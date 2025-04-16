@@ -1,0 +1,8 @@
+import { Routes } from '@angular/router';
+import { ProductListPage } from './features/product/pages/product-list/product-list.page';  // Update the path if necessary
+
+export const appRoutes: Routes = [
+  { path: '', redirectTo: '/product', pathMatch: 'full' },  // Redirect to /product by default
+  { path: 'product', component: ProductListPage },  // Product List Page route
+  // Add other routes as necessary
+];
