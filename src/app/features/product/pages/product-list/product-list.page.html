@@ -1,35 +1,33 @@
 <div class="product-list">
-  <h2>Our Carpets</h2>
+  <h2 class="section-title">Our Premium Carpets</h2>
 
   <div class="grid-container">
     <div *ngFor="let product of products" class="product-card">
       <img
-        [src]="product.imageUrl || 'https://picsum.photos/300/200'"
+        src="/assets/images/carpet-placeholder.jpg"
         alt="{{ product.name }}"
         class="product-image"
       />
 
       <div class="product-info">
-        <div class="product-brand">{{ product.brand }}</div>
-        <div class="product-category">{{ product.category }}</div>
-        <div class="product-size">{{ product.size }}</div>
-        <div class="product-color">{{ product.color }}</div>
-        <div class="product-id">{{ product.id }}</div>
+        <span class="product-brand">{{ product.brand }}</span>
+        <span class="product-meta">
+          {{ product.category }} | {{ product.size }} | {{ product.color }}
+        </span>
 
-        <h3>{{ product.name }}</h3>
-        <p class="price">₹{{ product.price }}</p>
-        <p class="description">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-price">₹{{ product.price }}</p>
+        <p class="product-description">
           {{ product.description || 'Premium quality carpet for your comfort.' }}
         </p>
 
         <div class="product-actions">
-          <button (click)="addToCart(product)" class="add-to-cart-btn">
-            Add to Cart 🛒
+          <button (click)="addToCart(product)" class="btn btn-cart">
+            🛒 Add to Cart
           </button>
-          <button [routerLink]="['/product-details', product.id]" class="view-details-btn">
-            View Details 🔍 {{product.name}}
+          <button [routerLink]="['/product-details', product.id]" class="btn btn-details">
+            🔍 View Details
           </button>
-          
         </div>
       </div>
     </div>
