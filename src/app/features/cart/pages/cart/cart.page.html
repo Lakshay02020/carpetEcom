@@ -1,0 +1,22 @@
+<div class="cart-page" *ngIf="cart">
+    <h2>Your Shopping Cart</h2>
+  
+    <div *ngIf="cart.cartItems.length > 0; else emptyCart">
+      <div class="cart-items">
+        <div class="cart-item" *ngFor="let item of cart.cartItems">
+            <img src="assests/images/carpet-placeholder.jpg" class="product-image" alt="Carpet Image" />
+  
+          <div class="item-details">
+            <h3>Carpet</h3>
+            <p><strong>Price:</strong> ₹{{ item.price }}</p>
+            <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <ng-template #emptyCart>
+      <p class="empty-message">Your cart is empty. 🛍️</p>
+    </ng-template>
+  </div>
+  

@@ -1,0 +1,49 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .left-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .left-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+  }
+  
+  nav a {
+    margin-right: 1rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  nav a.active {
+    color: #007bff;
+  }
+  
+  .right-header {
+    font-size: 1rem;
+  }
+  
+  .cart-button {
+    text-decoration: none;
+    font-size: 1.1rem;
+    background-color: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cart-button:hover {
+    background-color: #0056b3;
+  }
+  
