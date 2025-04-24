@@ -50,3 +50,8 @@
     margin-top: 2rem;
   }
   
+  .product-image {
+    width: 100%; /* Adjusts to the container width */
+    max-width: 100px; /* Sets a max width */
+    height: auto; /* Maintain aspect ratio */
+  }

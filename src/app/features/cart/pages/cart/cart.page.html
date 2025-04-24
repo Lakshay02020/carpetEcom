@@ -4,10 +4,7 @@
     <div *ngIf="cart.cartItems.length > 0; else emptyCart">
       <div class="cart-items">
         <div class="cart-item" *ngFor="let item of cart.cartItems">
-          <img
-            [src]="'https://via.placeholder.com/150x150'"
-            class="item-image"
-          />
+            <img src="assests/images/carpet-placeholder.jpg" class="product-image" alt="Carpet Image" />
   
           <div class="item-details">
             <h3>Carpet</h3>
