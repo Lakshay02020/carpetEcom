@@ -1,16 +1,5 @@
 <!-- app.component.html -->
-<header class="app-header">
-  <div class="left-header">
-    <h1>🧶 Carpet E-Commerce</h1>
-    <nav>
-      <a routerLink="/product" routerLinkActive="active">Products</a>
-    </nav>
-  </div>
-
-  <div class="right-header">
-    <a [routerLink]="['/cart', 'testUser']" class="cart-button">🛒 Cart</a>
-  </div>
-</header>
+<app-nav-bar></app-nav-bar>
 
 <main>
   <router-outlet></router-outlet>

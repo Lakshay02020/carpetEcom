@@ -1,22 +1,50 @@
 <div class="cart-page" *ngIf="cart">
-    <h2>Your Shopping Cart</h2>
-  
-    <div *ngIf="cart.cartItems.length > 0; else emptyCart">
-      <div class="cart-items">
-        <div class="cart-item" *ngFor="let item of cart.cartItems">
-            <img src="assests/images/carpet-placeholder.jpg" class="product-image" alt="Carpet Image" />
-  
-          <div class="item-details">
-            <h3>Carpet</h3>
-            <p><strong>Price:</strong> ₹{{ item.price }}</p>
-            <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+  <h2 class="cart-title">Your Shopping Cart</h2>
+
+  <div *ngIf="cart.cartItems.length > 0; else emptyCart" class="cart-wrapper">
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let item of cart.cartItems">
+        <div class="item-image">
+          <img src="assets/images/carpet-placeholder.jpg" alt="Carpet Image" />
+        </div>
+        <div class="item-details">
+          <h3 class="item-name">Carpet</h3>
+          <p class="item-price"><strong>Price:</strong> ₹{{ item.price }}</p>
+          <div class="quantity-controls">
+            <label for="quantity-{{ item.id }}">Quantity:</label>
+            <div class="quantity-input">
+              <button>-</button>
+              <input type="number" id="quantity-{{ item.id }}" [value]="item.quantity" min="1">
+              <button>+</button>
+            </div>
           </div>
+        </div>
+        <div class="item-total">
+          ₹{{ item.price * item.quantity }}
         </div>
       </div>
     </div>
-  
-    <ng-template #emptyCart>
-      <p class="empty-message">Your cart is empty. 🛍️</p>
-    </ng-template>
+
+    <div class="cart-summary">
+      <h3 class="summary-title">Order Summary</h3>
+      <div class="summary-item">
+        <span>Subtotal:</span>
+        <span>₹1234</span>
+      </div>
+      <div class="summary-item">
+        <span>Shipping:</span>
+        <span>₹34</span>
+      </div>
+      <div class="summary-item total">
+        <span>Total:</span>
+        <span>₹1268</span>
+      </div>
+      <button class="checkout-button">Proceed to Checkout</button>
+    </div>
   </div>
-  
+
+  <ng-template #emptyCart>
+    <p class="empty-message">Your cart is empty. 🛍️ Let's find you something beautiful!</p>
+    <a routerLink="/products" class="continue-shopping">Continue Shopping</a>
+  </ng-template>
+</div>
