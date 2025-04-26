@@ -1,0 +1,129 @@
+/* Navbar Styling */
+.navbar {
+    background-color: #f8f9fa; /* Off-white color */
+    color: #333;
+    padding: 1.5rem 0;
+    position: fixed; /* Make it sticky */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it stays on top */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .logo a {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-links li {
+    margin-left: 2rem;
+  }
+  
+  .nav-links li a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.1rem;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .nav-links li a:hover,
+  .nav-links li a.active {
+    color: #007bff; /* A trendy highlight color */
+  }
+  
+  .cart-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-link i {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .cart-count {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    background-color: #dc3545; /* A notification color */
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 50%;
+  }
+  
+  /* Burger Menu for Smaller Screens */
+  .burger {
+    display: none;
+    cursor: pointer;
+  }
+  
+  .burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Mobile Responsive Navbar */
+  @media screen and (max-width: 768px) {
+    .nav-links {
+      position: absolute;
+      background-color: #fff;
+      left: 0px;
+      top: 68px; /* Adjust based on navbar height */
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateX(-100%);
+      transition: transform 0.5s ease-in-out;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+  
+    .nav-links.nav-active {
+      transform: translateX(0%); /* Show menu when active */
+    }
+  
+    .nav-links li {
+      margin: 1.5rem 0;
+    }
+  
+    .burger {
+      display: block;
+    }
+  
+    .toggle .line1 {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+  
+    .toggle .line2 {
+      opacity: 0;
+    }
+  
+    .toggle .line3 {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+  }
+  

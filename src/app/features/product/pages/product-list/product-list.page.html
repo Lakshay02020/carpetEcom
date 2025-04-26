@@ -1,32 +1,49 @@
-<div class="product-list">
+<section class="product-list">
   <h2 class="section-title">Our Premium Carpets</h2>
 
   <div class="grid-container">
-    <div *ngFor="let product of products" class="product-card">
-      <img src="assests/images/carpet-placeholder.jpg" class="product-image" alt="Carpet Image" />
+    <article *ngFor="let product of products" class="product-card">
+      <div class="product-image-container">
+        <a [routerLink]="['/product-details', product.id]">
+          <img
+            [src]="'assests/images/carpet-placeholder.jpg'"
+            [alt]="product.name"
+            class="product-image"
+          />
+        </a>
+      </div>
 
+      <div class="product-details">
+        <header class="product-header">
+          <span class="product-brand">{{ product.brand }}</span>
+          <span class="product-meta">
+            {{ product.category }} | {{ product.size }} | {{ product.color }}
+          </span>
+          <h3 class="product-name">{{ product.name }}</h3>
+        </header>
 
-      <div class="product-info">
-        <span class="product-brand">{{ product.brand }}</span>
-        <span class="product-meta">
-          {{ product.category }} | {{ product.size }} | {{ product.color }}
-        </span>
+        <div class="product-pricing">
+          <p class="product-price">₹{{ product.price }}</p>
+        </div>
 
-        <h3 class="product-name">{{ product.name }}</h3>
-        <p class="product-price">₹{{ product.price }}</p>
-        <p class="product-description">
-          {{ product.description || 'Premium quality carpet for your comfort.' }}
-        </p>
+        <div class="product-summary">
+          <p class="product-description">
+            {{ product.description || 'Premium quality carpet for your comfort.' }}
+          </p>
+        </div>
 
-        <div class="product-actions">
+        <footer class="product-actions">
           <button (click)="addToCart(product)" class="btn btn-cart">
             🛒 Add to Cart
           </button>
-          <button [routerLink]="['/product-details', product.id]" class="btn btn-details">
+          <button
+            [routerLink]="['/product-details', product.id]"
+            class="btn btn-details"
+          >
             🔍 View Details
           </button>
-        </div>
+        </footer>
       </div>
-    </div>
+    </article>
   </div>
-</div>
+</section>
