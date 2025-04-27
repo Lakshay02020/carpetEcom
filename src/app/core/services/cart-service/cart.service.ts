@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from '../../../../environments/environment'; // Adjust the import path as necessary
 import { CartItem } from '../../models/cartItem.model'; // Adjust the import path as necessary
 import { Cart } from '../../models/cart.model'; // Adjust the import path as necessary
@@ -9,6 +9,10 @@ import { Cart } from '../../models/cart.model'; // Adjust the import path as nec
   providedIn: 'root'
 })
 export class CartService {
+  clearCart(cart: Cart): Observable<Cart> {
+    return of(cart);
+  }
+  
   private apiUrl = `${environment.cartApi}`; // assuming /cart is the base
 
   constructor(private http: HttpClient) {}
