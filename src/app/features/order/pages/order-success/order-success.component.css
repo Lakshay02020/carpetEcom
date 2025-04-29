@@ -1,0 +1,234 @@
+/* Global styles - add to your styles.css or main.css */
+body {
+    margin: 0; /* Reset default body margin */
+  }
+  
+  .order-success-page {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f9fafb;
+    min-height: calc(100vh - 70px); /* Subtract navbar height from min-height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: calc(2rem + 70px) 1rem; /* Add navbar height to top padding */
+  }
+  
+  .order-success-content {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    padding: 3rem;
+    text-align: center;
+    width: 95%;
+    max-width: 900px;
+    animation: fadeIn 0.7s ease-in-out, scaleIn 0.7s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.95);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  
+  .order-success-header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .order-success-title {
+    font-size: 3rem;
+    color: #10b981;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: -0.05rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .order-success-icon {
+    margin-right: 1rem;
+    font-size: 3.5rem;
+    color: #10b981;
+  }
+  
+  .order-success-message {
+    font-size: 1.2rem;
+    color: #4b5563;
+    line-height: 1.8;
+    padding: 0 1rem;
+  }
+  
+  .order-confirmation {
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+  
+  .order-confirmation-title {
+    font-size: 1.8rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+  }
+  
+  .order-confirmation-detail {
+    font-size: 1.1rem;
+    color: #6b7280;
+    line-height: 1.7;
+    padding: 0 1rem;
+  }
+  
+  .order-summary {
+    background-color: #f3f4f6;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    margin-bottom: 2.5rem;
+    text-align: left;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e5e7eb;
+  }
+  
+  .order-summary-title {
+    font-size: 1.8rem;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #d1d5db;
+    padding-bottom: 0.75rem;
+    font-weight: 600;
+    letter-spacing: -0.025rem;
+  }
+  
+  .order-summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .order-summary-item {
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .order-summary-label {
+    font-weight: 600;
+    color: #374151;
+  }
+  
+  .order-summary-value {
+    color: #4b5563;
+  }
+  
+  .order-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .order-actions-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out,
+      box-shadow 0 6px 10px -2px rgba(0, 0, 0, 0.15),
+      0 3px 7px -3px rgba(0, 0, 0, 0.07);
+    width: 100%;
+    max-width: 350px;
+    border: none;
+  }
+  
+  .order-actions-view {
+    background-color: #3b82f6;
+    color: #ffffff;
+  }
+  
+  .order-actions-view:hover {
+    background-color: #2563eb;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.2),
+      0 4px 8px -4px rgba(0, 0, 0, 0.12);
+  }
+  
+  .order-actions-continue {
+    background-color: #e5e7eb;
+    color: #374151;
+  }
+  
+  .order-actions-continue:hover {
+    background-color: #d1d5db;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.2),
+      0 4px 8px -4px rgba(0, 0, 0, 0.12);
+  }
+  
+  .order-actions-icon {
+    margin-right: 0.75rem;
+    font-size: 1.4rem;
+  }
+  
+  .order-support {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #d1d5db;
+    text-align: center;
+  }
+  
+  .order-support-link {
+    color: #3b82f6;
+    font-weight: 500;
+    text-decoration: none;
+  }
+  
+  .order-support-link:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .order-success-content {
+      padding: 2.5rem;
+    }
+  
+    .order-success-title {
+      font-size: 2.25rem;
+    }
+  
+    .order-success-message {
+      font-size: 1.1rem;
+    }
+  
+    .order-summary {
+      font-size: 1rem;
+      padding: 1.5rem;
+    }
+  
+    .order-actions {
+      gap: 1rem;
+    }
+  
+    .order-actions-button {
+      font-size: 1rem;
+      padding: 1.25rem 2rem;
+    }
+  }
+  
