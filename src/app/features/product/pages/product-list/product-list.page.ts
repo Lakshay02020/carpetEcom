@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OnInit } from '@angular/core';
 import { ProductService } from '../../../../core/services/product-service/product.service';
+import { CartService } from '../../../../core/services/cart-service/cart.service';
 import { Product } from '../../../../core/models/product.model';
 import { RouterModule}  from '@angular/router';
 
@@ -16,7 +17,7 @@ import { RouterModule}  from '@angular/router';
 export class ProductListPage implements OnInit {
   products: Product[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private cartService: CartService) {}
 
   ngOnInit(): void {
     console.log('ProductListPage initialized');
@@ -25,7 +26,6 @@ export class ProductListPage implements OnInit {
         this.products = data;
         console.log('Products received:', data);
   
-        // Log each product individually
         data.forEach((product, index) => {
           console.log(`Product ${index + 1}:`, product);
         });
@@ -37,7 +37,15 @@ export class ProductListPage implements OnInit {
   }
 
   addToCart(product: Product): void {
+    const userId = '10'; 
     console.log('Adding to cart:', product);
-    // You can later connect this to a cart service
+    this.cartService.addToCart(userId, product).subscribe({
+      next: (res) => {
+        console.log('Item added to cart:', res);
+      },
+      error: (err) => {
+        console.error('Failed to add item to cart:', err);
+      }
+    });
   }
 }
