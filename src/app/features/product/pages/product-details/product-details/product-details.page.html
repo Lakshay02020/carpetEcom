@@ -11,7 +11,21 @@
     <p><strong>Description:</strong> {{ product.description || 'No description available.' }}</p>
     <p><strong>In Stock:</strong> {{ product.quantityInStock }}</p>
 
-    <button class="add-to-cart-btn">Add to Cart 🛒</button>
+    <div class="product-actions-detail">
+      <ng-container *ngIf="isInCart(product.id); else addToCartBtn">
+        <div class="quantity-input styled-quantity">
+          <button (click)="decreaseQuantity(product)" class="qty-btn">−</button>
+          <span class="qty-label">{{ getCartItemQuantity(product.id) }}</span>
+          <button (click)="addToCart(product)" class="qty-btn">+</button>
+        </div>
+      </ng-container>
+
+      <ng-template #addToCartBtn>
+        <button (click)="addToCart(product)" class="add-to-cart-btn">
+          Add to Cart 🛒
+        </button>
+      </ng-template>
+    </div>
   </div>
 
   <div class="specs-section">

@@ -33,9 +33,22 @@
         </div>
 
         <footer class="product-actions">
-          <button (click)="addToCart(product)" class="btn btn-cart">
-            🛒 Add to Cart
-          </button>
+          <!-- Check if item is in cart -->
+          <ng-container *ngIf="isInCart(product.id); else addToCartBtn">
+            <div class="quantity-input styled-quantity">
+              <button (click)="decreaseQuantity(product)" class="qty-btn">−</button>
+              <span class="qty-label">{{ getCartItemQuantity(product.id) }}</span>
+              <button (click)="addToCart(product)" class="qty-btn">+</button>
+            </div>
+          </ng-container>
+        
+          <!-- Fallback "Add to Cart" Button -->
+          <ng-template #addToCartBtn>
+            <button (click)="addToCart(product)" class="btn btn-cart">
+              🛒 Add to Cart
+            </button>
+          </ng-template>
+        
           <button
             [routerLink]="['/product-details', product.id]"
             class="btn btn-details"
@@ -43,6 +56,7 @@
             🔍 View Details
           </button>
         </footer>
+        
       </div>
     </article>
   </div>

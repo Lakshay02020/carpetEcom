@@ -1,3 +1,5 @@
+/* ... your existing CSS ... */
+
 .product-detail {
   max-width: 1200px;
   margin: 40px auto;
@@ -7,11 +9,12 @@
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 1fr 1.5fr; /* Adjust column ratio if needed */
   gap: 40px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   animation: fadeIn 0.5s ease-in-out;
 }
+
 .product-detail img {
   width: 100%; /* Ensure image takes full width of its grid cell */
   height: auto;
@@ -42,8 +45,15 @@
   color: #222;
 }
 
+/* New styles for the product actions in the detail page */
+.product-actions-detail {
+  display: flex;
+  gap: 20px; /* Adjust spacing between button and quantity controls */
+  align-items: center; /* Vertically align items */
+  margin-top: 30px; /* Adjust top margin */
+}
+
 .add-to-cart-btn {
-  margin-top: 30px;
   padding: 14px 28px;
   font-size: 1.1rem;
   background-color: #28a745;
@@ -51,12 +61,62 @@
   border-radius: 8px;
   color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.1s ease-in-out; /* Added transform */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .add-to-cart-btn:hover {
   background-color: #1e7e34;
+  transform: scale(1.02); /* Subtle hover effect */
+}
+
+.add-to-cart-btn:active {
+  transform: scale(0.98);
+}
+
+/* Quantity Controls - + / - (same styles as before) */
+.styled-quantity {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Increased gap for balance */
+}
+
+/* Circular Buttons (for + / -) */
+.qty-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.qty-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.1);
+}
+
+.qty-btn:active {
+  transform: scale(0.95);
+}
+
+/* Quantity Label (in between) */
+.qty-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  width: 50px;
+  text-align: center;
+  background-color: #f1f1f1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .specs-section,
@@ -200,5 +260,30 @@
   .review-section h3,
   .recommendation-section h3 {
     font-size: 1.6rem;
+  }
+
+  /* Adjust product actions layout for smaller screens */
+  .product-actions-detail {
+    flex-direction: column; /* Stack button and quantity controls */
+    align-items: flex-start; /* Align to the left */
+    gap: 10px; /* Reduce gap */
+  }
+
+  .add-to-cart-btn {
+    width: 100%; /* Make button full width */
+  }
+
+  .styled-quantity {
+    width: 100%; /* Make quantity controls full width */
+    justify-content: space-between; /* Distribute space around items */
+  }
+
+  .qty-label {
+    text-align: center;
+    flex-grow: 1; /* Allow label to take available space */
+  }
+
+  .qty-btn {
+    flex-shrink: 0; /* Prevent buttons from shrinking */
   }
 }

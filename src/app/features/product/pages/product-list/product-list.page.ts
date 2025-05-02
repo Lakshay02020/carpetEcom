@@ -6,6 +6,7 @@ import { CartService } from '../../../../core/services/cart-service/cart.service
 import { Product } from '../../../../core/models/product.model';
 import { RouterModule}  from '@angular/router';
 import { CartItem } from '../../../../core/models/cartItem.model';
+import { Cart } from '../../../../core/models/cart.model';
 
 @Component({
   selector: 'app-product-list',
@@ -17,7 +18,7 @@ import { CartItem } from '../../../../core/models/cartItem.model';
 
 export class ProductListPage implements OnInit {
   products: Product[] = [];
-
+  cart: Cart | null = null;
   constructor(private productService: ProductService, private cartService: CartService) {}
 
   ngOnInit(): void {
@@ -34,6 +35,16 @@ export class ProductListPage implements OnInit {
       error: (err) => {
         console.error('Error fetching products:', err);
       }
+      });
+
+    this.cartService.getCartItems().subscribe({
+      next: (data) => {
+        this.cart = data;
+        console.log('Cart data loaded:', this.cart);
+      },
+      error: (err) => {
+        console.error('Failed to load cart', err);
+      }
     });
   }
 
@@ -49,8 +60,10 @@ export class ProductListPage implements OnInit {
       price: product.price
     };
 
-    this.cartService.updateCartItem(userId, cartItem.productId, quantity).subscribe({
+    this.cartService.updateCartItem(userId, product.id.toString(), quantity).subscribe({
       next: (res) => {
+        cartItem.quantity = cartItem.quantity + 1; // Update the item quantity in the cart
+        this.refreshCart();
         console.log('Item added to cart:', res);
       },
       error: (err) => {
@@ -73,11 +86,38 @@ export class ProductListPage implements OnInit {
 
     this.cartService.updateCartItem(userId, cartItem.productId, quantity).subscribe({
       next: (res) => {
+        cartItem.quantity = cartItem.quantity - 1; // Update the item quantity in the cart
+        this.refreshCart();
         console.log('Quantity decreased:', res);
       },
       error: (err) => {
         console.error('Failed to decrease quantity:', err);
       }
     });
-  }  
+  }
+  
+  // Assuming this.cartItems is an array of CartItem
+isInCart(productId: number): boolean {
+  const productIdStr = productId.toString(); // Ensure productId is a string
+  return this.cart?.cartItems?.some(item => item.productId == productIdStr) ?? false;
+}
+
+getCartItemQuantity(productId: number): number {
+  const productIdStr = productId.toString();
+  const item = this.cart?.cartItems?.find(item => item.productId === productIdStr);
+  return item ? item.quantity : 0;
+}
+
+refreshCart(): void {
+  this.cartService.getCartItems().subscribe({
+    next: (data) => {
+      this.cart = data;
+      console.log('Cart refreshed:', this.cart);
+    },
+    error: (err) => {
+      console.error('Failed to refresh cart:', err);
+    }
+  });
+}
+
 }

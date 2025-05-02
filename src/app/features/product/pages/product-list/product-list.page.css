@@ -1,180 +1,272 @@
+/* Main Section */
 .product-list {
-  padding: 3rem 2rem;
-  padding-top: calc(3rem + 70px); /* Add top padding for sticky navbar */
-  background-color: #f8f8f8;
+  padding: 4rem 3rem; /* Increased padding for more breathing room */
+  padding-top: calc(4rem + 70px); /* Adjust top padding accordingly */
+  background-color: #f4f4f4; /* Slightly softer background */
 }
 
-/* ... rest of your CSS remains the same ... */
-
+/* Section Title */
 .section-title {
-  font-size: 2.5rem;
-  color: #333;
+  font-size: 2.75rem; /* Slightly larger and more prominent */
+  color: #2c3e50; /* Darker, more sophisticated text color */
   text-align: center;
-  margin-bottom: 2.5rem;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 1rem;
+  margin-bottom: 3rem; /* Increased margin */
+  border-bottom: 3px solid #ddd; /* Thicker, softer border */
+  padding-bottom: 1.2rem; /* Adjust padding */
+  font-weight: 500; /* Slightly lighter font weight for elegance */
 }
 
+/* Or even wider, depending on your layout */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(480px, 1fr));
   gap: 2.5rem;
 }
 
+/* Product Card */
 .product-card {
   background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 12px; /* Slightly more rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06); /* Softer shadow */
   overflow: hidden;
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* More natural transition */
 }
 
 .product-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px) scale(1.04); /* Subtle lift on hover */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
 }
 
+/* Product Image */
 .product-image-container {
   width: 100%;
-  height: 220px;
-  overflow: hidden; /* Ensures image stays within container */
+  height: 240px; /* Slightly taller image container */
+  overflow: hidden;
 }
 
 .product-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #e0e0e0; /* Softer border */
 }
 
+/* Product Details Section */
 .product-details {
-  padding: 1.5rem;
+  padding: 2rem; /* Increased padding */
   display: flex;
   flex-direction: column;
 }
 
+/* Product Header */
 .product-header {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem; /* Increased margin */
 }
 
 .product-brand {
-  display: block;
-  font-size: 0.9rem;
-  color: #777;
-  margin-bottom: 0.3rem;
+  font-size: 0.95rem; /* Slightly larger */
+  color: #555; /* Darker color */
+  margin-bottom: 0.4rem;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
+  font-weight: 500; /* Semi-bold for emphasis */
 }
 
 .product-meta {
-  display: block;
-  font-size: 0.85rem;
-  color: #999;
-  margin-bottom: 0.6rem;
+  font-size: 0.9rem; /* Slightly larger */
+  color: #777; /* Darker color */
+  margin-bottom: 0.7rem;
 }
 
 .product-name {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 0.5rem;
-  line-height: 1.2;
+  font-size: 1.6rem; /* Slightly larger */
+  color: #2c3e50; /* Darker color */
+  margin-bottom: 0.6rem;
+  line-height: 1.3; /* Improved line height */
+  font-weight: 600; /* More emphasis on the name */
 }
 
+/* Product Pricing */
 .product-pricing {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem; /* Increased margin */
 }
 
 .product-price {
-  font-size: 1.3rem;
-  color: #007bff;
+  font-size: 1.4rem; /* Slightly larger */
+  color: #28a745; /* Keep the primary color, but consider a slightly darker shade */
   font-weight: bold;
 }
 
+/* Product Summary (Description) */
 .product-summary {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem; /* Increased margin */
 }
 
 .product-description {
-  font-size: 1rem;
-  color: #555;
-  line-height: 1.5;
+  font-size: 1.05rem; /* Slightly larger */
+  color: #444; /* Darker color */
+  line-height: 1.6; /* Improved readability */
 }
 
+/* Action Buttons (Add to Cart, View Details) */
 .product-actions {
   display: flex;
-  gap: 0.8rem;
-  margin-top: auto; /* Push actions to the bottom */
+  gap: 1rem; /* Increased gap */
+  margin-top: auto;
 }
 
 .btn {
-  padding: 0.8rem 1.2rem;
+  padding: 0.9rem 1.5rem; /* Slightly larger buttons */
   border: none;
-  border-radius: 6px;
-  font-size: 1rem;
+  border-radius: 8px; /* More rounded corners */
+  font-size: 1.05rem; /* Slightly larger text */
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out; /* Smoother transition */
 }
 
 .btn-cart {
   background-color: #28a745;
-  color: #fff;
+  color: white;
+  box-shadow: 0 2px 5px rgba(40, 167, 69, 0.3); /* Subtle shadow */
 }
 
 .btn-cart:hover {
-  background-color: #1e7e34;
+  background-color: #218838;
+  transform: scale(1.02); /* Subtle hover effect */
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4);
+}
+
+.btn-cart:active {
+  transform: scale(0.98);
 }
 
 .btn-details {
-  background-color: #f0f0f0;
+  background-color: #e6e6e6; /* Slightly softer gray */
   color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 .btn-details:hover {
-  background-color: #e0e0e0;
+  background-color: #d4d4d4;
+  transform: scale(1.02); /* Subtle hover effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive adjustments remain largely the same */
+.btn-details:active {
+  transform: scale(0.98);
+}
+
+/* Responsive Design */
 @media (max-width: 600px) {
-  .grid-container {
-    grid-template-columns: 1fr;
+  .product-list {
+    padding: 3rem 1.5rem;
+    padding-top: calc(3rem + 70px);
   }
 
   .section-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .product-image-container {
-    height: 180px;
+    height: 200px;
   }
 
   .product-details {
-    padding: 1rem;
+    padding: 1.5rem;
   }
 
   .product-name {
-    font-size: 1.3rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
   }
 
   .product-price {
-    font-size: 1.2rem;
-    margin-bottom: 0.6rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.7rem;
   }
 
   .product-summary {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
   }
 
   .product-actions {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.7rem;
   }
 
   .btn {
     width: 100%;
+    padding: 0.9rem;
+    font-size: 1rem;
   }
+}
 
+/* Quantity Controls - + / - */
+.styled-quantity {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Slightly increased gap */
+  margin-top: 18px; /* Slightly increased margin */
+}
 
-  /* ... rest of your CSS remains the same ... */
+/* Circular Buttons (for + / -) */
+.qty-btn {
+  width: 42px; /* Slightly larger */
+  height: 42px; /* Slightly larger */
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-size: 22px; /* Slightly larger */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out; /* Smoother transition */
+  box-shadow: 0 3px 7px rgba(0, 123, 255, 0.2); /* More prominent shadow */
+}
+
+.qty-btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.15); /* More noticeable hover effect */
+  box-shadow: 0 5px 10px rgba(0, 123, 255, 0.3);
+}
+
+.qty-btn:active {
+  transform: scale(0.95);
+}
+
+/* Quantity Label (in between) */
+.qty-label {
+  font-size: 19px; /* Slightly larger */
+  font-weight: 600;
+  color: #333;
+  width: 55px; /* Slightly wider */
+  text-align: center;
+  background-color: #f8f8f8; /* Softer background */
+  padding: 9px; /* Adjust padding */
+  border-radius: 8px; /* More rounded */
+  border: 1px solid #ddd;
+  box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.05); /* Softer inset shadow */
+}
+
+/* Additional Styling to make cart section more prominent */
+.product-actions .btn-cart {
+  margin-top: 15px; /* Increased margin */
+  padding: 1.1rem 2.2rem; /* Slightly larger */
+  font-size: 1.15rem; /* Slightly larger */
+  background-color: #28a745;
+  border-radius: 8px; /* More rounded */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* More natural transition */
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.4); /* More prominent shadow */
+}
+
+.product-actions .btn-cart:hover {
+  background-color: #218838;
+  transform: scale(1.06); /* More noticeable hover effect */
+  box-shadow: 0 6px 12px rgba(40, 167, 69, 0.5);
 }
