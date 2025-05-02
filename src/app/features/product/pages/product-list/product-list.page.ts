@@ -5,6 +5,7 @@ import { ProductService } from '../../../../core/services/product-service/produc
 import { CartService } from '../../../../core/services/cart-service/cart.service';
 import { Product } from '../../../../core/models/product.model';
 import { RouterModule}  from '@angular/router';
+import { CartItem } from '../../../../core/models/cartItem.model';
 
 @Component({
   selector: 'app-product-list',
@@ -39,7 +40,16 @@ export class ProductListPage implements OnInit {
   addToCart(product: Product): void {
     const userId = '10'; 
     console.log('Adding to cart:', product);
-    this.cartService.addToCart(userId, product).subscribe({
+    const quantity= 1; // Default quantity to add
+
+    const cartItem: CartItem = {
+      id: 0, 
+      productId: product.id.toString(),
+      quantity: quantity,
+      price: product.price
+    };
+
+    this.cartService.updateCartItem(userId, cartItem.productId, quantity).subscribe({
       next: (res) => {
         console.log('Item added to cart:', res);
       },
@@ -48,4 +58,26 @@ export class ProductListPage implements OnInit {
       }
     });
   }
+
+  decreaseQuantity(product: Product): void {
+    const userId = '10'; 
+    console.log('Decreasing quantity for:', product);
+    const quantity= -1; // Decrease quantity by 1
+
+    const cartItem: CartItem = {
+      id: 0, 
+      productId: product.id.toString(),
+      quantity: quantity,
+      price: product.price
+    };
+
+    this.cartService.updateCartItem(userId, cartItem.productId, quantity).subscribe({
+      next: (res) => {
+        console.log('Quantity decreased:', res);
+      },
+      error: (err) => {
+        console.error('Failed to decrease quantity:', err);
+      }
+    });
+  }  
 }

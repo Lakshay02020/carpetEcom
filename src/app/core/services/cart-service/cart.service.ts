@@ -22,16 +22,12 @@ export class CartService {
     return this.http.get<Cart>(`${this.apiUrl}/10`);
   }
 
-  addToCart(userId: string, product: Product): Observable<string> {
-    const cartItem: CartItem = {
-      id: 0, 
-      productId: product.id.toString(),
-      quantity: 1,
-      price: product.price
-    };
-    console.log("Inside cart service: ", cartItem)
-    return this.http.post(`${this.apiUrl}/${userId}/items`, cartItem, {
-      responseType: 'text' as const 
-    });
+  updateCartItem(userId: string, productId: string, itemQuantity: number): Observable<string> {
+    console.log("Inside cart service: ", productId, itemQuantity);
+    return this.http.post<string>(
+      `${this.apiUrl}/${userId}/updateQuantity/${productId}?quantity=${itemQuantity}`, 
+      null, 
+      { responseType: 'text' as 'json' }
+    );
   }
 }

@@ -4,6 +4,8 @@ import { CartService } from '../../../../core/services/cart-service/cart.service
 import { Cart } from '../../../../core/models/cart.model'; // Adjust the import path as necessary
 import { RouterModule, Router } from '@angular/router';
 import { OrderService } from '../../../../core/services/order-service/order.service'; // Adjust the import path as necessary
+import { Product } from '../../../../core/models/product.model';
+import { CartItem } from '../../../../core/models/cartItem.model';
 
 @Component({
   selector: 'app-cart',
@@ -48,9 +50,40 @@ export class CartPage implements OnInit {
       },
       error: (err) => {
         console.error('Failed to place order:', err);
-        // Optional: show error notification to user
       }
     });
   }
+
+    addToCart(item: CartItem): void {
+      const userId = '10'; 
+      console.log('Adding to cart with product Id:', item.productId);
+      this.cartService.updateCartItem(userId, item.productId, 1).subscribe({
+        next: (res) => {
+          item.quantity = item.quantity + 1; // Update the item quantity in the cart
+          console.log('Item added to cart:', res);
+        },
+        error: (err) => {
+          console.error('Failed to add item to cart:', err);
+        }
+      });
+    }
   
+    decreaseQuantity(item: CartItem): void {
+      const userId = '10'; 
+      console.log('Decreasing quantity for product with productId:', item.productId);
+      this.cartService.updateCartItem(userId, item.productId, -1).subscribe({
+        next: (res) => {
+          item.quantity = item.quantity - 1; // Update the item quantity in the cart
+          console.log('Quantity decreased:', res);
+          if (item.quantity <= 0 && this.cart) {
+            // Remove item from cartItems array to update UI
+            this.cart.cartItems = this.cart.cartItems.filter(i => i.productId !== item.productId);
+          }
+        },
+        error: (err) => {
+          console.error('Failed to decrease quantity:', err);
+        }
+      });
+  
+}
 }

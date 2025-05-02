@@ -13,9 +13,9 @@
           <div class="quantity-controls">
             <label for="quantity-{{ item.id }}">Quantity:</label>
             <div class="quantity-input">
-              <button>-</button>
+              <button (click)="decreaseQuantity(item)">-</button>
               <input type="number" id="quantity-{{ item.id }}" [value]="item.quantity" min="1">
-              <button>+</button>
+              <button (click)="addToCart(item)">+</button>
             </div>
           </div>
         </div>
