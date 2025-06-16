@@ -8,7 +8,7 @@
           <img src="assests/images/carpet-placeholder.jpg" alt="Carpet Image" />
         </div>
         <div class="item-details">
-          <h3 class="item-name">Carpet</h3>
+          <h3 class="item-name">{{item.name}}</h3>
           <p class="item-price"><strong>Price:</strong> ₹{{ item.price }}</p>
           <div class="quantity-controls">
             <label for="quantity-{{ item.id }}">Quantity:</label>
@@ -29,22 +29,22 @@
       <h3 class="summary-title">Order Summary</h3>
       <div class="summary-item">
         <span>Subtotal:</span>
-        <span>₹1234</span>
+        <span>₹{{subtotal}}</span>
       </div>
       <div class="summary-item">
         <span>Shipping:</span>
-        <span>₹34</span>
+        <span>₹{{shippingCharge}}</span>
       </div>
       <div class="summary-item total">
         <span>Total:</span>
-        <span>₹1268</span>
+        <span>₹{{total}}</span>
       </div>
-      <button class="checkout-button" (click)="onPlaceOrder()">Place Order</button>
+      <button class="checkout-button" (click)="moveToCheckOutPage()">Checkout</button>
     </div>
   </div>
 
   <ng-template #emptyCart>
     <p class="empty-message">Your cart is empty. 🛍️ Let's find you something beautiful!</p>
-    <a routerLink="/products" class="continue-shopping">Continue Shopping</a>
+    <a routerLink="/" class="continue-shopping">Continue Shopping</a>
   </ng-template>
 </div>

@@ -66,7 +66,7 @@ export class OrderService {
    * @param cart The user's cart.
    * @returns An Observable that emits the placed Order object.
    */
-  placeOrder(cart: Cart): Observable<Order> {
+  placeOrder(cart: Cart, paymentDetails: any): Observable<Order> {
     console.log('Placing order...');
 
     if (!cart || !cart.cartItems || cart.cartItems.length === 0) {

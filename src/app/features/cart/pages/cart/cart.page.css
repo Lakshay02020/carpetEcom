@@ -1,14 +1,15 @@
+/* Cart Page Styles */
 .cart-page {
   padding: 2rem;
-  width: 100%; /* Take full width */
-  min-height: calc(100vh - /* Adjust for your navbar height */ 70px); /* Take at least full viewport height minus navbar */
-  margin: 0; /* Remove horizontal margins */
+  width: 100%;
+  min-height: calc(100vh - 70px); /* Adjust for your navbar height */
+  margin: 0;
   background-color: #f9f9f9;
-  border-radius: 0; /* Remove border radius for full screen */
+  border-radius: 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex; /* Use flexbox to control layout */
-  flex-direction: column; /* Stack content vertically */
-  align-items: center; /* Center content horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cart-title {
@@ -21,8 +22,8 @@
 .cart-wrapper {
   display: flex;
   gap: 2rem;
-  width: 90%; /* Take a large percentage of the width */
-  max-width: 1200px; /* Still maintain a maximum width for very large screens */
+  width: 90%;
+  max-width: 1200px;
 }
 
 .cart-items {
@@ -40,11 +41,11 @@
 }
 
 .item-image {
-  width: 120px; /* थोड़ा बड़ा इमेज */
+  width: 120px;
   height: 120px;
   overflow: hidden;
   border-radius: 4px;
-  margin-right: 1.5rem; /* थोड़ी ज़्यादा दूरी */
+  margin-right: 1.5rem;
 }
 
 .item-image img {
@@ -58,7 +59,7 @@
 }
 
 .item-name {
-  font-size: 1.4rem; /* थोड़ा बड़ा फ़ॉन्ट */
+  font-size: 1.4rem;
   font-weight: bold;
   color: #333;
   margin-bottom: 0.7rem;
@@ -84,29 +85,49 @@
 .quantity-input {
   display: flex;
   align-items: center;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  overflow: hidden;
+  border: none; /* Removed border from the container */
+  border-radius: 0; /* Removed border-radius from the container */
+  overflow: visible; /* Changed overflow */
 }
 
 .quantity-input button {
   background: none;
   border: none;
-  padding: 0.6rem;
+  padding: 0.3rem 0.6rem;
   font-size: 1.1rem;
   cursor: pointer;
   color: #555;
   transition: background-color 0.2s ease;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  /* Circular and blue button styles */
+  border-radius: 50%;
+  border: 1px solid #007bff;
+  color: #007bff;
+  background-color: white;
+  font-size: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 123, 255, 0.1);
 }
 
 .quantity-input button:hover {
-  background-color: #eee;
+  background-color: #e0f7fa;
+  border-color: #0056b3;
+  color: #0056b3;
+}
+
+.quantity-input button:focus {
+  outline: none;
+  border-color: #003d82;
 }
 
 .quantity-input input {
   width: 50px;
   text-align: center;
-  border: none;
+  border: none; /* Removed border from the input */
   padding: 0.6rem;
   font-size: 1.1rem;
 }
@@ -119,15 +140,15 @@
 }
 
 .cart-summary {
-  flex-basis: 350px; /* थोड़ी ज़्यादा चौड़ाई */
+  flex-basis: 350px;
   background-color: #fff;
-  padding: 2rem; /* ज़्यादा पैडिंग */
+  padding: 2rem;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .summary-title {
-  font-size: 1.7rem; /* बड़ा फ़ॉन्ट */
+  font-size: 1.7rem;
   color: #333;
   margin-bottom: 1.2rem;
   border-bottom: 2px solid #eee;
@@ -137,13 +158,13 @@
 .summary-item {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem; /* ज़्यादा मार्जिन */
+  margin-bottom: 1rem;
   font-size: 1.1rem;
   color: #666;
 }
 
 .summary-item.total {
-  font-size: 1.3rem; /* बड़ा फ़ॉन्ट */
+  font-size: 1.3rem;
   font-weight: bold;
   color: #333;
   padding-top: 1rem;
@@ -153,14 +174,14 @@
 .checkout-button {
   background-color: #007bff;
   color: #fff;
-  padding: 1.2rem 2rem; /* ज़्यादा पैडिंग */
+  padding: 1.2rem 2rem;
   border: none;
   border-radius: 4px;
-  font-size: 1.2rem; /* बड़ा फ़ॉन्ट */
+  font-size: 1.2rem;
   cursor: pointer;
   width: 100%;
   transition: background-color 0.3s ease;
-  margin-top: 1.5rem; /* थोड़ी दूरी */
+  margin-top: 1.5rem;
 }
 
 .checkout-button:hover {
@@ -168,16 +189,16 @@
 }
 
 .empty-message {
-  font-size: 1.4rem; /* बड़ा फ़ॉन्ट */
+  font-size: 1.4rem;
   color: #777;
   text-align: center;
-  margin-top: 3rem; /* ज़्यादा मार्जिन */
+  margin-top: 3rem;
 }
 
 .continue-shopping {
   display: inline-block;
-  margin-top: 1.5rem; /* ज़्यादा मार्जिन */
-  padding: 1rem 1.5rem; /* ज़्यादा पैडिंग */
+  margin-top: 1.5rem;
+  padding: 1rem 1.5rem;
   background-color: #28a745;
   color: #fff;
   text-decoration: none;
@@ -194,7 +215,7 @@
 @media (max-width: 768px) {
   .cart-page {
     padding: 1rem;
-    min-height: calc(100vh - 60px); /* Adjust for smaller navbar */
+    min-height: calc(100vh - 60px);
   }
 
   .cart-title {
@@ -233,6 +254,26 @@
 
   .quantity-controls {
     margin-top: 0.5rem;
+  }
+
+  .quantity-controls label {
+    margin-bottom: 0.3rem;
+  }
+
+  .quantity-input {
+    width: 100%;
+  }
+
+  .quantity-input button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .quantity-input input {
+    width: 60px;
+    padding: 0.5rem;
+    font-size: 1.1rem;
   }
 
   .summary-title {

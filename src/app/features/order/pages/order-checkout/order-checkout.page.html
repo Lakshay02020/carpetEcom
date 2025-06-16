@@ -1,0 +1,56 @@
+<div class="amazon-checkout">
+    <!-- Left Column: Shipping & Payment -->
+    <div class="checkout-left">
+      <div class="checkout-section">
+        <h2>1. Delivery Address</h2>
+        <form>
+          <input type="text" placeholder="Full Name" required>
+          <input type="text" placeholder="Street Address" required>
+          <input type="text" placeholder="City" required>
+          <input type="text" placeholder="State" required>
+          <input type="text" placeholder="ZIP Code" required>
+          <input type="text" placeholder="Country" required>
+          <input type="tel" placeholder="Phone Number" required>
+        </form>
+      </div>
+      <div class="checkout-section">
+        <h2>2. Review Items and Delivery</h2>
+        <div class="item-review">
+        <div class="item-review" *ngFor="let item of cartItems">
+          <img src="assests/images/carpet-placeholder.jpg" alt="Product" />
+          <div>
+            <div class="item-title">{{ item.name }}</div>
+            <div class="item-price">₹{{ item.price }}</div>
+            <div class="item-delivery">Delivery: Tomorrow</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Right Column: Order Summary -->
+    <div class="checkout-right">
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span>Items Total:</span>
+          <span>₹{{itemTotal}}</span>
+        </div>
+        <div class="summary-row">
+          <span>Delivery:</span>
+          <span>₹{{deliveryCharge}}</span>
+        </div>
+        <div class="summary-row total">
+          <span>Order Total:</span>
+          <span>₹{{grandTotal}}</span>
+        </div>
+        <button class="place-order-btn" (click)="placeOrder()">Place your order</button>
+        <div class="secure-text">
+          Transaction is secure
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<div *ngIf="isPlacingOrder" class="loading-overlay">
+  <p>Placing your order...</p>
+</div>

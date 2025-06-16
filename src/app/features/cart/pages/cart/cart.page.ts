@@ -43,7 +43,7 @@ export class CartPage implements OnInit {
       console.error('Cart is null, cannot place order');
       return;
     }
-    this.orderService.placeOrder(this.cart).subscribe({
+    this.orderService.placeOrder(this.cart, null).subscribe({
       next: (order) => {
         console.log('Order placed successfully:', order);
         this.router.navigate(['/order-success']); // Navigate to success page
@@ -84,6 +84,36 @@ export class CartPage implements OnInit {
           console.error('Failed to decrease quantity:', err);
         }
       });
-  
+  }
+
+  // 💰 Calculate subtotal based on product price and quantity
+  get subtotal(): number {
+    console.log('Calculating subtotal...', this.cart);
+    if (!this.cart || !this.cart.cartItems) return 0;
+    return this.cart.cartItems.reduce((sum, item) => {
+      return Math.floor(sum + (item.price * item.quantity));
+    }, 0);
+  }
+
+  get shippingCharge(): number {
+    console.log('Calculating shipping charge...');
+    return this.subtotal > 10000 ? 0 : 200; // Example logic for shipping charge
+  }
+
+  get total(): number {
+    console.log('Calculating total...');
+    return this.subtotal + this.shippingCharge;
+  }
+
+  moveToCheckOutPage(): void {
+    console.log('Moving to checkout page with cart items...');
+    // Replace 'this.cartItems' with your actual cart data variable
+
+    console.log('Cart Page: Cart data:', this.cart);
+    if(this.cart != null && this.cart.cartItems != null && this.cart.cartItems.length != 0) {
+    this.router.navigate(['/checkout'], {
+      state: { cartData: this.cart, cartItems: this.cart.cartItems } // Pass your cart items here
+    });
+  }
 }
 }
