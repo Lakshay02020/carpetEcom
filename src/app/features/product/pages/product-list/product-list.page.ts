@@ -57,7 +57,9 @@ export class ProductListPage implements OnInit {
       id: 0, 
       productId: product.id.toString(),
       quantity: quantity,
-      price: product.price
+      price: product.price,
+      name: product.name,
+      description: product.description
     };
 
     this.cartService.updateCartItem(userId, product.id.toString(), quantity).subscribe({
@@ -81,7 +83,9 @@ export class ProductListPage implements OnInit {
       id: 0, 
       productId: product.id.toString(),
       quantity: quantity,
-      price: product.price
+      price: product.price,
+      name: product.name,
+      description: product.description
     };
 
     this.cartService.updateCartItem(userId, cartItem.productId, quantity).subscribe({
@@ -119,5 +123,4 @@ refreshCart(): void {
     }
   });
 }
-
 }
