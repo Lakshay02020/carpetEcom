@@ -35,12 +35,10 @@ export class CheckoutService {
       this.verifyPayment(response).subscribe({
         next: (res) => {
           console.log('Verify success response:', res);
-          alert('✅ Payment Successful!');
           onSuccess();
         },
         error: (err) => {
           console.error('Verification failed:', err);
-          alert('❌ Payment verification failed!');
           onFailure();
         }
       });

@@ -43,7 +43,7 @@ export class CartPage implements OnInit {
       console.error('Cart is null, cannot place order');
       return;
     }
-    this.orderService.placeOrder(this.cart).subscribe({
+    this.orderService.placeOrder(this.cart, null).subscribe({
       next: (order) => {
         console.log('Order placed successfully:', order);
         this.router.navigate(['/order-success']); // Navigate to success page
@@ -108,8 +108,12 @@ export class CartPage implements OnInit {
   moveToCheckOutPage(): void {
     console.log('Moving to checkout page with cart items...');
     // Replace 'this.cartItems' with your actual cart data variable
+
+    console.log('Cart Page: Cart data:', this.cart);
+    if(this.cart != null && this.cart.cartItems != null && this.cart.cartItems.length != 0) {
     this.router.navigate(['/checkout'], {
-      state: { cartData: this.cart?.cartItems } // Pass your cart items here
+      state: { cartData: this.cart, cartItems: this.cart.cartItems } // Pass your cart items here
     });
   }
+}
 }

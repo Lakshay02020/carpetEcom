@@ -16,10 +16,11 @@
       <div class="checkout-section">
         <h2>2. Review Items and Delivery</h2>
         <div class="item-review">
-          <img src="assets/item-image.jpg" alt="Product" />
+        <div class="item-review" *ngFor="let item of cartItems">
+          <img src="assests/images/carpet-placeholder.jpg" alt="Product" />
           <div>
-            <div class="item-title">Product Name Example</div>
-            <div class="item-price">₹499</div>
+            <div class="item-title">{{ item.name }}</div>
+            <div class="item-price">₹{{ item.price }}</div>
             <div class="item-delivery">Delivery: Tomorrow</div>
           </div>
         </div>
@@ -31,22 +32,25 @@
       <div class="order-summary">
         <h3>Order Summary</h3>
         <div class="summary-row">
-          <span>Items (1):</span>
-          <span>₹499</span>
+          <span>Items Total:</span>
+          <span>₹{{itemTotal}}</span>
         </div>
         <div class="summary-row">
           <span>Delivery:</span>
-          <span>₹40</span>
+          <span>₹{{deliveryCharge}}</span>
         </div>
         <div class="summary-row total">
           <span>Order Total:</span>
-          <span>₹539</span>
+          <span>₹{{grandTotal}}</span>
         </div>
         <button class="place-order-btn" (click)="placeOrder()">Place your order</button>
         <div class="secure-text">
-          <img src="assets/lock-icon.png" alt="Secure" /> Transaction is secure
+          Transaction is secure
         </div>
       </div>
     </div>
   </div>
   
+<div *ngIf="isPlacingOrder" class="loading-overlay">
+  <p>Placing your order...</p>
+</div>
