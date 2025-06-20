@@ -6,6 +6,7 @@ import { RouterModule, Router } from '@angular/router';
 import { OrderService } from '../../../../core/services/order-service/order.service'; // Adjust the import path as necessary
 import { Product } from '../../../../core/models/product.model';
 import { CartItem } from '../../../../core/models/cartItem.model';
+import { getRandomPlaceholderImage } from '../../../imageUtils';  
 
 @Component({
   selector: 'app-cart',
@@ -116,4 +117,9 @@ export class CartPage implements OnInit {
     });
   }
 }
+
+getRandomImage(): string {
+  return getRandomPlaceholderImage();
+}
+
 }

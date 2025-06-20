@@ -5,7 +5,7 @@ import { CartItem } from '../../../../core/models/cartItem.model';
 import { CheckoutService } from '../../../../core/services/checkout-service/checkout.service';
 import { CommonModule } from '@angular/common';
 import { OrderService } from '../../../../core/services/order-service/order.service';
-
+import { getRandomPlaceholderImage } from '../../../imageUtils';  
 
 @Component({
   selector: 'app-order-checkout',
@@ -95,5 +95,8 @@ export class OrderCheckoutPage {
     });
 }
 
+getRandomImage(): string {
+  return getRandomPlaceholderImage();
+}
 
 }

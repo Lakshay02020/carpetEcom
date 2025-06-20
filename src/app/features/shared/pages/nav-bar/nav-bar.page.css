@@ -1,7 +1,7 @@
 /* Navbar Styling */
 .navbar {
-    background-color: #f8f9fa; /* Off-white color */
-    color: #333;
+ background: linear-gradient(to right, #7e2828, #ca8888); /* Deep red-brown gradient */
+    color: #ebe5e5;
     padding: 1.5rem 0;
     position: fixed; /* Make it sticky */
     top: 0;
@@ -47,7 +47,7 @@
   
   .nav-links li a:hover,
   .nav-links li a.active {
-    color: #007bff; /* A trendy highlight color */
+    color: #e0ca24; /* A trendy highlight color */
   }
   
   .cart-link {
