@@ -7,6 +7,7 @@ import { Product } from '../../../../core/models/product.model';
 import { RouterModule}  from '@angular/router';
 import { CartItem } from '../../../../core/models/cartItem.model';
 import { Cart } from '../../../../core/models/cart.model';
+import { getRandomPlaceholderImage } from '../../../imageUtils';
 
 @Component({
   selector: 'app-product-list',
@@ -122,5 +123,20 @@ refreshCart(): void {
       console.error('Failed to refresh cart:', err);
     }
   });
+}
+
+scrollToProducts(element: HTMLElement): void {
+  element.scrollIntoView({ behavior: 'smooth' });
+}
+
+placeholderImages = [
+  'assests/images/carpet1.jpg',
+  'assests/images/carpet2.jpg',
+  'assests/images/carpet3.jpg',
+  'assests/images/carpet4.png'
+];
+
+getRandomImage(): string {
+  return getRandomPlaceholderImage();
 }
 }

@@ -6,6 +6,7 @@ import { CartService } from '../../../../../core/services/cart-service/cart.serv
 import { Product } from '../../../../../core/models/product.model';
 import { Cart } from '../../../../../core/models/cart.model'; // Adjust the import path as necessary
 import { CartItem } from '../../../../../core/models/cartItem.model';
+import { getRandomPlaceholderImage } from '../../../../imageUtils';  
 
 @Component({
   selector: 'app-product-details',
@@ -115,5 +116,9 @@ refreshCart(): void {
         console.error('Failed to decrease quantity:', err);
       }
     });
+  }
+
+  getRandomImage(): string {
+    return getRandomPlaceholderImage();
   }
 }

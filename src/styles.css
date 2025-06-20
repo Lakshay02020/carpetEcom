@@ -8,5 +8,7 @@
     width: 100%;
     overflow-x: hidden;
     font-family: 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
   }
+  
   

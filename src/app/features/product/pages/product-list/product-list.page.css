@@ -1,3 +1,60 @@
+/* Hero Section */
+
+.hero-banner {
+  position: relative;
+  width: 100%; /* Adjust top padding accordingly */
+
+  height: calc(100vh - 70px); /* adjust 70px to your navbar height */
+  margin-top: 70px; /* pushes hero below navbar */
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(70%);
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: white;
+  max-width: 500px;
+}
+
+.hero-text h1 {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.hero-text p {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.hero-btn {
+  padding: 12px 24px;
+  background-color: #ff6f00;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-btn:hover {
+  background-color: #e65100;
+}
+
 /* Main Section */
 .product-list {
   padding: 4rem 3rem; /* Increased padding for more breathing room */

@@ -1,15 +1,26 @@
+<section class="hero-banner">
+  <img src="assests/images/home-carpet.jpg" lt="Luxury Carpets" class="hero-image" />
+  <div class="hero-text">
+    <h1>Elevate Your Space with Premium Carpets</h1>
+    <p>Soft. Stylish. Timeless. Find your perfect match today.</p>
+    <button (click)="scrollToProducts(productsSection)" class="btn hero-btn">
+      🛍️ Shop Now
+    </button>
+  </div>
+</section>
+
 <section class="product-list">
   <h2 class="section-title">Our Premium Carpets</h2>
 
-  <div class="grid-container">
+  <div class="grid-container" #productsSection>
     <article *ngFor="let product of products" class="product-card">
       <div class="product-image-container">
         <a [routerLink]="['/product-details', product.id]">
-          <img
-            [src]="'assests/images/carpet-placeholder.jpg'"
-            [alt]="product.name"
-            class="product-image"
-          />
+        <img
+          [src]="getRandomImage()"
+          [alt]="product.name"
+          class="product-image"
+        />
         </a>
       </div>
 
