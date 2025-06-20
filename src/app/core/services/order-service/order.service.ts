@@ -40,7 +40,7 @@ export class OrderService {
   }
 
 
-  private buildOrder(cartItems: CartItem[]): Omit<Order, 'id' | 'createdAt' | 'updatedAt' | 'status'> {
+  private buildOrder(cartItems: CartItem[], paymentMode: string): Omit<Order, 'id' | 'createdAt' | 'updatedAt' | 'status'> {
     console.log("Building order...")
     const orderItems = this.mapCartItemsToOrderItems(cartItems);
     const totalAmount = orderItems.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -49,7 +49,6 @@ export class OrderService {
     //  or from input fields in the checkout form.  This is hardcoded for demonstration.
     const userId = '10';
     const shippingAddress = 'House no 549, Patiala Chowk, Punjab';
-    const paymentMode = 'COD';
 
     console.log("Order built!")
     return {
@@ -66,14 +65,14 @@ export class OrderService {
    * @param cart The user's cart.
    * @returns An Observable that emits the placed Order object.
    */
-  placeOrder(cart: Cart, paymentDetails: any): Observable<Order> {
+  placeOrder(cart: Cart,  paymentMode: string): Observable<Order> {
     console.log('Placing order...');
 
     if (!cart || !cart.cartItems || cart.cartItems.length === 0) {
       return throwError(() => new Error('Cart is empty'));
     }
-
-    const order = this.buildOrder(cart.cartItems);
+    
+    const order = this.buildOrder(cart.cartItems, paymentMode);
     console.log('Order to be placed:', order);
     return this.http.post<Order>(`${this.apiUrl}/placeOrder`, order).pipe(
       tap((placedOrder) => console.log('Order placed successfully:', placedOrder)),

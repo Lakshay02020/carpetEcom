@@ -43,7 +43,7 @@ export class CartPage implements OnInit {
       console.error('Cart is null, cannot place order');
       return;
     }
-    this.orderService.placeOrder(this.cart, null).subscribe({
+    this.orderService.placeOrder(this.cart, "COD").subscribe({
       next: (order) => {
         console.log('Order placed successfully:', order);
         this.router.navigate(['/order-success']); // Navigate to success page

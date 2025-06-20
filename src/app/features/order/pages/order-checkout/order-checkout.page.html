@@ -3,15 +3,15 @@
     <div class="checkout-left">
       <div class="checkout-section">
         <h2>1. Delivery Address</h2>
-        <form>
-          <input type="text" placeholder="Full Name" required>
-          <input type="text" placeholder="Street Address" required>
-          <input type="text" placeholder="City" required>
-          <input type="text" placeholder="State" required>
-          <input type="text" placeholder="ZIP Code" required>
-          <input type="text" placeholder="Country" required>
-          <input type="tel" placeholder="Phone Number" required>
-        </form>
+<form #checkoutForm="ngForm">
+  <input name="fullName" [(ngModel)]="deliveryDetails.fullName" type="text" placeholder="Full Name" required />
+  <input name="address" [(ngModel)]="deliveryDetails.address" type="text" placeholder="Street Address" required />
+  <input name="city" [(ngModel)]="deliveryDetails.city" type="text" placeholder="City" required />
+  <input name="state" [(ngModel)]="deliveryDetails.state" type="text" placeholder="State" required />
+  <input name="zip" [(ngModel)]="deliveryDetails.zip" type="text" placeholder="ZIP Code" required />
+  <input name="country" [(ngModel)]="deliveryDetails.country" type="text" placeholder="Country" required />
+  <input name="phone" [(ngModel)]="deliveryDetails.phone" type="tel" placeholder="Phone Number" required />
+</form>
       </div>
       <div class="checkout-section">
         <h2>2. Review Items and Delivery</h2>
@@ -20,7 +20,7 @@
           <img src="assests/images/carpet-placeholder.jpg" alt="Product" />
           <div>
             <div class="item-title">{{ item.name }}</div>
-            <div class="item-price">₹{{ item.price }}</div>
+            <div class="item-price">₹{{ item.price }} x {{item.quantity}}</div>
             <div class="item-delivery">Delivery: Tomorrow</div>
           </div>
         </div>
