@@ -5,7 +5,7 @@ import { OrderSuccessComponent } from './features/order/pages/order-success/orde
 import { CartPage } from './features/cart/pages/cart/cart.page';
 import { OrderCheckoutPage } from './features/order/pages/order-checkout/order-checkout.page';
 export const appRoutes: Routes = [
-  { path: '', redirectTo: '/product', pathMatch: 'full' },  // Redirect to /product by default
+  { path: '', component: ProductListPage },  // Redirect to /product by default
   { path: 'product', component: ProductListPage },  // Product List Page route
   { path: 'product-details/:id', component: ProductDetailsPage },  // Product Details Page route
   { path: 'cart/:userId', component: CartPage},
