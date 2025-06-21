@@ -13,6 +13,7 @@
 }
 
 .cart-title {
+  padding-top: calc(10px + 70px);
   font-size: 2.5rem;
   color: #333;
   margin-bottom: 2rem;

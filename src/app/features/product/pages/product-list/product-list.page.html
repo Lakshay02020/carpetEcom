@@ -9,6 +9,7 @@
   </div>
 </section>
 
+
 <section class="product-list">
   <h2 class="section-title">Our Premium Carpets</h2>
 
@@ -16,11 +17,9 @@
     <article *ngFor="let product of products" class="product-card">
       <div class="product-image-container">
         <a [routerLink]="['/product-details', product.id]">
-        <img
-          [src]="getRandomImage()"
-          [alt]="product.name"
-          class="product-image"
-        />
+          <img
+            src="assests/images/carpet1.jpg"
+            class="product-image"/>
         </a>
       </div>
 
