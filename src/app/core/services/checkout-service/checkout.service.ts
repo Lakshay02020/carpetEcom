@@ -13,7 +13,7 @@ export class CheckoutService {
    * Step 1: Create Razorpay order via backend
    */
   createOrder(amount: number) {
-    return this.http.post<any>('http://localhost:9089/api/create', {
+    return this.http.post<any>('https://payment-service-41up.onrender.com/api/create', {
       amount: amount * 100, // Razorpay expects paise,
       orderId: 'order_' + new Date().getTime() // Unique order ID
     });
@@ -62,6 +62,6 @@ export class CheckoutService {
     razorpay_signature: string
   }) {
     console.log('Verifying payment with data:', paymentData);
-    return this.http.post('http://localhost:9089/api/verify', paymentData);
+    return this.http.post('https://payment-service-41up.onrender.com/api/verify', paymentData);
   }
 }
