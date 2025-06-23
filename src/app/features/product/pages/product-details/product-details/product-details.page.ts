@@ -80,6 +80,17 @@ refreshCart(): void {
       description: product.description
     };
 
+    const existingItem = this.cart?.cartItems.find(item => item.productId === product.id.toString());
+
+    // For Faster UI, Update the cart item quantity immediately
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      // If the item does not exist, add it to the cart
+      console.log('Item not in cart, adding new item:', cartItem);
+      this.cart?.cartItems.push(cartItem);
+    }
+
     this.cartService.updateCartItem(userId, product.id.toString(), quantity).subscribe({
       next: (res) => {
         cartItem.quantity = cartItem.quantity + 1; // Update the item quantity in the cart
@@ -106,10 +117,21 @@ refreshCart(): void {
       description: product.description
     };
 
+    const existingItem = this.cart?.cartItems.find(item => item.productId === product.id.toString());
+
+    // For Faster UI, Update the cart item quantity immediately
+    if (existingItem) {
+      console.log('Item already in cart, decreasing quantity:', existingItem);
+      existingItem.quantity -= 1;
+
+      // Remove item from cart if quantity is 0 or less
+      if (existingItem.quantity <= 0 && this.cart !== null) {
+         this.cart.cartItems = this.cart.cartItems.filter(i => i.productId !== product.id.toString());
+      }
+    }
+
     this.cartService.updateCartItem(userId, cartItem.productId, quantity).subscribe({
       next: (res) => {
-        cartItem.quantity = cartItem.quantity - 1; // Update the item quantity in the cart
-        this.refreshCart();
         console.log('Quantity decreased:', res);
       },
       error: (err) => {
