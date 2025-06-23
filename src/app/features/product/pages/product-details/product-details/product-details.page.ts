@@ -45,7 +45,7 @@ export class ProductDetailsPage implements OnInit {
     // Assuming this.cartItems is an array of CartItem
 isInCart(productId: number): boolean {
   const productIdStr = productId.toString(); // Ensure productId is a string
-  return this.cart?.cartItems?.some(item => item.productId == productIdStr) ?? false;
+  return this.cart?.cartItems?.some(item => item.productId == productIdStr && item.quantity > 0) ?? false;
 }
 
 getCartItemQuantity(productId: number): number {
