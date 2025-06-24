@@ -8,6 +8,8 @@ import { OrderItem } from '../../models/order-item.model';
 import { CartService } from '../cart-service/cart.service'; // Ensure correct path
 import { Cart } from '../../models/cart.model';       // Ensure correct path
 import { CartItem } from '../../models/cartItem.model';
+import { DeliveryDetails } from '../../models/deliveryDetail.model';
+import { PaymentDetails } from '../../models/paymentDetails.mode';
 
 @Injectable({
   providedIn: 'root',
@@ -66,7 +68,7 @@ export class OrderService {
    * @param cart The user's cart.
    * @returns An Observable that emits the placed Order object.
    */
-  placeOrder(cart: Cart, paymentDetails: any): Observable<Order> {
+  placeOrder(cart: Cart, deliveryDetails: DeliveryDetails, paymentDetails: PaymentDetails): Observable<Order> {
     console.log('Placing order...');
 
     if (!cart || !cart.cartItems || cart.cartItems.length === 0) {
@@ -75,7 +77,15 @@ export class OrderService {
 
     const order = this.buildOrder(cart.cartItems);
     console.log('Order to be placed:', order);
-    return this.http.post<Order>(`${this.apiUrl}/placeOrder`, order).pipe(
+
+    const orderDetailDto = {
+      orderDto: order,
+      deliveryDto: deliveryDetails,
+      paymentDto: paymentDetails
+    }
+    console.log('Order Detail DTO:', orderDetailDto);
+    
+    return this.http.post<Order>(`${this.apiUrl}/placeOrder`, orderDetailDto).pipe(
       tap((placedOrder) => console.log('Order placed successfully:', placedOrder)),
       catchError((err) => {
         console.error('Error placing order:', err);

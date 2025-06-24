@@ -22,7 +22,7 @@ export class CheckoutService {
   /**
    * Step 2: Open Razorpay and handle payment
    */
-  openRazorpay(order: any, userInfo: { name: string, email: string, contact: string }, onSuccess: () => void, onFailure: () => void) {
+  openRazorpay(order: any, userInfo: { name: string, email: string, contact: string }, onSuccess: (paymentId: string) => void, onFailure: () => void) {
     const options = {
       key: 'rzp_test_KpXMQXub4PbPYO', // Replace with your real Key ID
       amount: order.amount,
@@ -32,10 +32,13 @@ export class CheckoutService {
       order_id: order.id,
       handler: (response: any) => {
         // Call verify after payment
+      const paymentId = response.razorpay_payment_id;
+      console.log('Payment ID:', paymentId);
+
       this.verifyPayment(response).subscribe({
         next: (res) => {
           console.log('Verify success response:', res);
-          onSuccess();
+          onSuccess(paymentId);
         },
         error: (err) => {
           console.error('Verification failed:', err);
