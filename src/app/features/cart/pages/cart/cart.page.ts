@@ -32,28 +32,28 @@ export class CartPage implements OnInit {
     });
   }
 
-  onPlaceOrder(): void {
-    const cartItems = this.cart?.cartItems || []; // fallback to empty array
-    console.log('OnplaceOrder Called, Cart items:', cartItems);
-    if (cartItems.length === 0) {
-      console.error('No cart items found');
-      return; // don't place empty orders
-    }
+  // onPlaceOrder(): void {
+  //   const cartItems = this.cart?.cartItems || []; // fallback to empty array
+  //   console.log('OnplaceOrder Called, Cart items:', cartItems);
+  //   if (cartItems.length === 0) {
+  //     console.error('No cart items found');
+  //     return; // don't place empty orders
+  //   }
   
-    if (!this.cart) {
-      console.error('Cart is null, cannot place order');
-      return;
-    }
-    this.orderService.placeOrder(this.cart, null).subscribe({
-      next: (order) => {
-        console.log('Order placed successfully:', order);
-        this.router.navigate(['/order-success']); // Navigate to success page
-      },
-      error: (err) => {
-        console.error('Failed to place order:', err);
-      }
-    });
-  }
+  //   if (!this.cart) {
+  //     console.error('Cart is null, cannot place order');
+  //     return;
+  //   }
+  //   this.orderService.placeOrder(this.cart, null).subscribe({
+  //     next: (order) => {
+  //       console.log('Order placed successfully:', order);
+  //       this.router.navigate(['/order-success']); // Navigate to success page
+  //     },
+  //     error: (err) => {
+  //       console.error('Failed to place order:', err);
+  //     }
+  //   });
+  // }
 
     addToCart(item: CartItem): void {
       const userId = '10'; 
