@@ -6,11 +6,14 @@ import { CheckoutService } from '../../../../core/services/checkout-service/chec
 import { CommonModule } from '@angular/common';
 import { OrderService } from '../../../../core/services/order-service/order.service';
 import { getRandomPlaceholderImage } from '../../../imageUtils';  
+import { FormsModule } from '@angular/forms';
+import { DeliveryDetails } from '../../../../core/models/deliveryDetail.model';
+import { PaymentDetails } from '../../../../core/models/paymentDetails.mode';
 
 @Component({
   selector: 'app-order-checkout',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, FormsModule],
   templateUrl: './order-checkout.page.html',
   styleUrls: ['./order-checkout.page.css']
 })
@@ -23,6 +26,17 @@ export class OrderCheckoutPage {
   deliveryCharge: number = 400; // Example delivery charge
   grandTotal: number = 0;
   isPlacingOrder: boolean = false;
+
+  deliveryDetails: DeliveryDetails = {
+    fullName: '',
+    street: '',
+    city: '',
+    state: '',
+    deliveryZip: '',
+    country: '',
+    phone: '',
+    email: ''
+  };
 
   constructor(private checkoutService: CheckoutService, private router: Router, private orderService: OrderService) {}
 
@@ -63,20 +77,27 @@ export class OrderCheckoutPage {
   totalAmount = 539;
 
   placeOrder() {
+    console.log("Delivery Adress details: ", this.deliveryDetails)
     this.isPlacingOrder = true;
     const userInfo = {
-      name: 'Lakshay Singla',
-      email: 'lakshay@example.com',
-      contact: '9876543210'
+      name: this.deliveryDetails.fullName,
+      email: this.deliveryDetails.email,
+      contact: this.deliveryDetails.phone
     };
+
+   
 
     this.checkoutService.createOrder(this.totalAmount).subscribe(order => {
       this.checkoutService.openRazorpay(order, userInfo, 
-        () => {
-          console.log('Payment successful, proceeding to place order');
+        (paymentId: string) => {
+          const paymentDetails: PaymentDetails = {
+              paymentMode: "ONLINE_PAYMENT",
+              razorpayPaymentId: paymentId,
+          }
+          console.log('Payment successful, proceeding to place order with razorpay_payment_id: ', paymentId);
           console.log('Cart before placing order:', this.cart);
           if (this.cart) {
-            this.orderService.placeOrder(this.cart, "PAYMENT_SUCCESS"). subscribe(
+            this.orderService.placeOrder(this.cart, this.deliveryDetails, paymentDetails). subscribe(
               order => {
                 console.log('Order placed successfully:', order);
                 this.router.navigate(['/order-success'], { state: { order } });
