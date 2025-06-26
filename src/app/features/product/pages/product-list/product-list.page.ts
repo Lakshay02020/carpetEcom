@@ -4,10 +4,11 @@ import { OnInit } from '@angular/core';
 import { ProductService } from '../../../../core/services/product-service/product.service';
 import { CartService } from '../../../../core/services/cart-service/cart.service';
 import { Product } from '../../../../core/models/product.model';
-import { RouterModule}  from '@angular/router';
+import { Router, RouterModule}  from '@angular/router';
 import { CartItem } from '../../../../core/models/cartItem.model';
 import { Cart } from '../../../../core/models/cart.model';
 import { getRandomPlaceholderImage } from '../../../imageUtils';
+import { AuthService } from '../../../../core/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-product-list',
@@ -20,7 +21,8 @@ import { getRandomPlaceholderImage } from '../../../imageUtils';
 export class ProductListPage implements OnInit {
   products: Product[] = [];
   cart: Cart | null = null;
-  constructor(private productService: ProductService, private cartService: CartService) {}
+  showLoginPopup = false;
+  constructor(private productService: ProductService, private cartService: CartService, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     console.log('ProductListPage initialized');
@@ -50,6 +52,11 @@ export class ProductListPage implements OnInit {
   }
 
   addToCart(product: Product): void {
+    if (!this.authService.isLoggedIn()) {
+      this.showLoginPopup = true;
+      return;
+    }
+    
     const userId = '10'; 
     console.log('Adding to cart:', product);
     const quantity= 1; // Default quantity to add
@@ -73,6 +80,15 @@ export class ProductListPage implements OnInit {
         console.error('Failed to add item to cart:', err);
       }
     });
+  }
+
+  closePopup() {
+  this.showLoginPopup = false;
+  }
+
+  goToLogin() {
+    this.showLoginPopup = false;
+    this.router.navigate(['/login']);
   }
 
   decreaseQuantity(product: Product): void {

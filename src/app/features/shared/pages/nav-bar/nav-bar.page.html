@@ -8,9 +8,9 @@
         <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
         <li><a routerLink="/about" routerLinkActive="active">About Us</a></li>
         <li>
-          <a [routerLink]="['/cart', 10]" routerLinkActive="active" class="cart-link">
+          <a href="#" (click)="handleCartClick($event)" class="cart-link">
             <i class="fas fa-shopping-cart"></i> Cart
-             </a>
+          </a>
         </li>
       </ul>
       <div class="burger">
@@ -19,4 +19,18 @@
         <div class="line3"></div>
       </div>
     </div>
+
+        <!-- Login Popup -->
+    <div class="popup-overlay" *ngIf="showLoginPopup">
+      <div class="popup-content">
+        <h3>Login Required</h3>
+        <p>Please login to add items to cart.</p>
+        <div class="popup-actions">
+          <button (click)="closePopup()">Cancel</button>
+          <button (click)="goToLogin()">Login Now</button>
+        </div>
+      </div>
+    </div>
   </nav>
+
+  

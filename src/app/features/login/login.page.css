@@ -1,0 +1,134 @@
+/* General Body Styling (optional, but good for overall page look) */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5; /* Light gray background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Full viewport height */
+  color: #333;
+}
+
+/* Login Container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px; /* Max width for the form container */
+  padding: 20px;
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Login Form Styling */
+.login-form {
+  background-color: #ffffff; /* White background for the form */
+  padding: 40px;
+  border-radius: 12px; /* Slightly more rounded corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  text-align: center;
+  width: 100%;
+}
+
+.login-form h2 {
+  margin-bottom: 30px;
+  color: #007bff; /* A nice blue for the heading */
+  font-size: 2em;
+  font-weight: 600;
+}
+
+/* Input Group Styling */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left; /* Align labels to the left */
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.input-group input {
+  width: calc(100% - 20px); /* Full width minus padding */
+  padding: 12px 10px;
+  border: 1px solid #ddd; /* Light grey border */
+  border-radius: 8px;
+  font-size: 1em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #007bff; /* Blue border on focus */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Subtle blue glow on focus */
+  outline: none; /* Remove default outline */
+}
+
+/* Login Button Styling */
+.login-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #007bff; /* Blue button */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 10px; /* Space above the button */
+}
+
+.login-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.login-button:active {
+  transform: translateY(0); /* Press effect */
+}
+
+/* Error Message Styling */
+.error-message {
+  color: #dc3545; /* Red for error messages */
+  margin-top: 15px;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+/* Forgot Password Link */
+.forgot-password {
+  display: block;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .login-form {
+    padding: 30px 20px; /* Reduce padding on smaller screens */
+  }
+
+  .login-form h2 {
+    font-size: 1.8em;
+  }
+
+  .input-group input {
+    padding: 10px;
+  }
+
+  .login-button {
+    padding: 12px;
+    font-size: 1em;
+  }
+}
