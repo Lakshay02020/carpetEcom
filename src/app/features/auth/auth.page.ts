@@ -29,7 +29,7 @@ export class AuthPage {
   constructor(private authService: AuthService, private router: Router) {}
 
   handleLogin() {
-    this.authService.login({ username: this.loginEmail, password: this.loginPassword })
+    this.authService.login({ email: this.loginEmail, password: this.loginPassword })
       .subscribe({
         next: (res) => {
           this.authService.saveToken(res.token);
