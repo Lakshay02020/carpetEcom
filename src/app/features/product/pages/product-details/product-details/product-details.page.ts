@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../../../../core/services/product-service/product.service';
 import { CartService } from '../../../../../core/services/cart-service/cart.service';
@@ -7,6 +7,7 @@ import { Product } from '../../../../../core/models/product.model';
 import { Cart } from '../../../../../core/models/cart.model'; // Adjust the import path as necessary
 import { CartItem } from '../../../../../core/models/cartItem.model';
 import { getRandomPlaceholderImage } from '../../../../imageUtils';  
+import { AuthService } from '../../../../../core/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-product-details',
@@ -18,11 +19,14 @@ import { getRandomPlaceholderImage } from '../../../../imageUtils';
 export class ProductDetailsPage implements OnInit {
   product: Product | null = null;
   cart: Cart | null = null; // Assuming you have a Cart model defined somewhere
+  showLoginPopup = false;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService // Assuming you need this for cart operations
+    private cartService: CartService, // Assuming you need this for cart operations
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +71,15 @@ refreshCart(): void {
 }
 
   addToCart(product: Product): void {
+    console.log('Add to cart called with product:', product);
+
+    if (!this.authService.isLoggedIn()) {
+      console.log('User is not logged in, showing login popup: ', this.showLoginPopup);
+      this.showLoginPopup = true;
+      console.log('Login popup state:', this.showLoginPopup);
+      return;
+    }
+
     const userId = '10'; 
     console.log('Adding to cart:', product);
     const quantity= 1; // Default quantity to add
@@ -101,6 +114,15 @@ refreshCart(): void {
         console.error('Failed to add item to cart:', err);
       }
     });
+  }
+
+  closePopup() {
+  this.showLoginPopup = false;
+  }
+
+  goToLogin() {
+    this.showLoginPopup = false;
+    this.router.navigate(['/login']);
   }
 
   decreaseQuantity(product: Product): void {

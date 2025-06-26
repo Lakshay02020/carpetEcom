@@ -1,24 +1,37 @@
 <nav class="navbar">
-  <div class="container">
-    <div class="logo">
-      <a routerLink="/">The Carpet Factory</a>
+    <div class="container">
+      <div class="logo">
+        <a routerLink="/">The Carpet Factory</a>
+      </div>
+      <ul class="nav-links">
+        <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+        <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
+        <li><a routerLink="/about" routerLinkActive="active">About Us</a></li>
+        <li>
+          <a href="#" (click)="handleCartClick($event)" class="cart-link">
+            <i class="fas fa-shopping-cart"></i> Cart
+          </a>
+        </li>
+        <li *ngIf="!showLoginPopup"><a href="#" (click)="logout()" class="nav-link" >Logout</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
     </div>
 
-    <ul class="nav-links" [ngClass]="{ 'nav-active': isNavOpen }">
-      <li><a routerLink="/" routerLinkActive="active">Home</a></li>
-      <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
-      <li><a routerLink="/about" routerLinkActive="active">About Us</a></li>
-      <li>
-        <a [routerLink]="['/cart', 10]" routerLinkActive="active" class="cart-link">
-          <i class="fas fa-shopping-cart"></i> Cart
-        </a>
-      </li>
-    </ul>
-
-    <div class="burger" [ngClass]="{ 'toggle': isNavOpen }" (click)="toggleNav()">
-      <div class="line1"></div>
-      <div class="line2"></div>
-      <div class="line3"></div>
+        <!-- Login Popup -->
+    <div class="popup-overlay" *ngIf="showLoginPopup">
+      <div class="popup-content">
+        <h3>Login Required</h3>
+        <p>Please login to add items to cart.</p>
+        <div class="popup-actions">
+          <button (click)="closePopup()">Cancel</button>
+          <button (click)="goToLogin()">Login Now</button>
+        </div>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+
+  

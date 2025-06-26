@@ -327,3 +327,117 @@
   transform: scale(1.06); /* More noticeable hover effect */
   box-shadow: 0 6px 12px rgba(40, 167, 69, 0.5);
 }
+
+/* CSS for the popover */
+/* Full-screen overlay to cover the entire viewport */
+.popup-overlay {
+  position: fixed;            /* Fixed to viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;               /* Full viewport width */
+  height: 100vh;              /* Full viewport height */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;              /* Flexbox to center content */
+  justify-content: center;    /* Center horizontally */
+  align-items: center;        /* Center vertically */
+  z-index: 1000;              /* Ensure it stays on top */
+  padding: 1rem;              /* Padding for small screens */
+  box-sizing: border-box;
+}
+
+/* Content container of the popup */
+.popup-content {
+  background-color: #fff;       /* White background */
+  border-radius: 8px;           /* Rounded corners */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.25); /* Soft shadow */
+  max-width: 400px;             /* Max width for desktop */
+  width: 100%;                  /* Full width up to max-width */
+  padding: 2rem 2.5rem;         /* Spacious padding */
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading style */
+.popup-content h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Paragraph style */
+.popup-content p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Container for the buttons */
+.popup-actions {
+  display: flex;
+  justify-content: space-between;  /* Spread buttons apart */
+  gap: 1rem;                       /* Gap between buttons */
+}
+
+/* Shared button styling */
+.popup-actions button {
+  flex: 1;                        /* Equal width buttons */
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+}
+
+/* Cancel button style */
+.popup-actions button:first-child {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.popup-actions button:first-child:hover {
+  background-color: #c7c7c7;
+}
+
+/* Login button style */
+.popup-actions button:last-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.popup-actions button:last-child:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .popup-content {
+    padding: 1.5rem;
+    max-width: 90vw;
+  }
+
+  .popup-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .popup-content p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .popup-actions {
+    flex-direction: column;  /* Stack buttons vertically */
+  }
+
+  .popup-actions button {
+    flex: none;
+    width: 100%;
+    margin-bottom: 0.75rem;
+  }
+
+  .popup-actions button:last-child {
+    margin-bottom: 0;
+  }
+}
