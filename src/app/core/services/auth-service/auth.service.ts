@@ -15,6 +15,10 @@ export class AuthService {
     return this.http.post<{ token: string }>(`${this.apiUrl}/login`, credentials);
   }
 
+  signup(data: { name: string, email: string, password: string }) {
+    return this.http.post<{ token: string }>(`${this.apiUrl}/register`, data);
+  }
+  
   saveToken(token: string) {
     localStorage.setItem('jwtToken', token);
   }
