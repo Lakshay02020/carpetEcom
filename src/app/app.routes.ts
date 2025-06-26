@@ -4,11 +4,20 @@ import {ProductDetailsPage} from './features/product/pages/product-details/produ
 import { OrderSuccessComponent } from './features/order/pages/order-success/order-success.component'; // Update the path if necessary
 import { CartPage } from './features/cart/pages/cart/cart.page';
 import { OrderCheckoutPage } from './features/order/pages/order-checkout/order-checkout.page';
+import { AuthPage } from './features/auth/auth.page';
+import { AuthGuard } from './guards/auth.guard';  // Ensure you have an AuthGuard implemented
+
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/product', pathMatch: 'full' },  // Redirect to /product by default
+ 
+   // Public Routes
+  { path: 'login', component: AuthPage },
+  // { path: 'register', component: RegisterPage },
+
   { path: 'product', component: ProductListPage },  // Product List Page route
   { path: 'product-details/:id', component: ProductDetailsPage },  // Product Details Page route
-  { path: 'cart/:userId', component: CartPage},
-  { path: 'order-success', component: OrderSuccessComponent},
-  { path: 'checkout', component: OrderCheckoutPage}, // Assuming you have a checkout order page 
+  { path: 'cart/:userId', component: CartPage, canActivate: [AuthGuard]},
+  { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
+  { path: 'checkout', component: OrderCheckoutPage, canActivate: [AuthGuard]}, // Assuming you have a checkout order page 
+
 ];

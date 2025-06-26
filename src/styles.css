@@ -11,4 +11,114 @@
     scroll-behavior: smooth;
   }
   
+  /* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Popup Content */
+.popup-content {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem 2.5rem;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.popup-content h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.popup-content p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Popup Actions */
+.popup-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.popup-actions button {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+}
+
+/* Cancel Button */
+.popup-actions button:first-child {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.popup-actions button:first-child:hover {
+  background-color: #c7c7c7;
+}
+
+/* Login Button */
+.popup-actions button:last-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.popup-actions button:last-child:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .popup-content {
+    padding: 1.5rem;
+    max-width: 90vw;
+  }
+
+  .popup-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .popup-content p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .popup-actions {
+    flex-direction: column;
+  }
+
+  .popup-actions button {
+    flex: none;
+    width: 100%;
+    margin-bottom: 0.75rem;
+  }
+
+  .popup-actions button:last-child {
+    margin-bottom: 0;
+  }
+}
+
   

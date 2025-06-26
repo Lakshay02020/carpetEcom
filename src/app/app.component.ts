@@ -1,13 +1,27 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+
+import { NavBarPage } from '../app/features/shared/pages/nav-bar/nav-bar.page'; 
+
+import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { RouterModule}  from '@angular/router';
-import { NavBarPage } from "./features/shared/pages/nav-bar/nav-bar.page";
+import { filter } from 'rxjs/operators';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterModule, NavBarPage],  // Use RouterOutlet to load routed components
+  standalone: true,
+  imports: [CommonModule, NavBarPage, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']  // Corrected to styleUrls (note the plural form)
 })
 export class AppComponent {
-  title = 'carpetEcom';
+
+  showNavbar = true;
+
+  constructor(private router: Router) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      this.showNavbar = !event.urlAfterRedirects.includes('/login');
+    });
+  }
 }
