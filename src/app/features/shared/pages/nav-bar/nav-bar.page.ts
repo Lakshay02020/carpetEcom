@@ -36,4 +36,9 @@ goToLogin(): void {
   this.router.navigate(['/login']);
 }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+  
 }
