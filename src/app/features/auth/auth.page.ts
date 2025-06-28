@@ -12,19 +12,18 @@ import { AuthService } from '../../core/services/auth-service/auth.service';
   styleUrls: ['./auth.page.css']
 })
 export class AuthPage {
-  
+
   // Login form
   loginEmail = '';
   loginPassword = '';
-  
+
   // Signup form
   signupName = '';
   signupEmail = '';
   signupPassword = '';
-  
+
   errorMessage = '';
-  
-  isRightPanelActive = false;
+  showSignup = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -42,23 +41,23 @@ export class AuthPage {
   }
 
   handleSignup() {
-    this.authService.signup({ 
-        name: this.signupName, 
-        email: this.signupEmail, 
-        password: this.signupPassword 
+    this.authService.signup({
+      name: this.signupName,
+      email: this.signupEmail,
+      password: this.signupPassword
     }).subscribe({
-    next: (res) => {
-      this.authService.saveToken(res.token);
-      this.router.navigate(['/']);
-    },
-    error: () => {
-      this.errorMessage = 'Signup failed. Please try again.';
-    }
-  });
+      next: (res) => {
+        this.authService.saveToken(res.token);
+        this.router.navigate(['/']);
+      },
+      error: () => {
+        this.errorMessage = 'Signup failed. Please try again.';
+      }
+    });
   }
 
-  togglePanel(showSignUp: boolean) {
-    this.isRightPanelActive = showSignUp;
+  toggleView() {
+    this.showSignup = !this.showSignup;
     this.errorMessage = '';
   }
 }

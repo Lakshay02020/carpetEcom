@@ -1,49 +1,33 @@
-<div class="container" [class.right-panel-active]="isRightPanelActive">
+<div class="auth-container">
   
-  <!-- Sign Up Form -->
-  <div class="form-container sign-up-container">
+  <!-- Login Form -->
+  <div *ngIf="!showSignup" class="auth-form">
+    <h2>Log In</h2>
+    <form (ngSubmit)="handleLogin()" novalidate>
+      <input type="email" placeholder="Email" [(ngModel)]="loginEmail" name="loginEmail" required>
+      <input type="password" placeholder="Password" [(ngModel)]="loginPassword" name="loginPassword" required>
+      <button type="submit">Log In</button>
+    </form>
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    <p class="toggle-text">
+      Don't have an account? <button class="ghost" (click)="toggleView()">Sign In</button>
+    </p>
+  </div>
+
+  <!-- Signup Form -->
+  <div *ngIf="showSignup" class="auth-form">
+    <h2>Create Account</h2>
     <form (ngSubmit)="handleSignup()" novalidate>
-      <h1>Create Account</h1>
-      <div class="social-container">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <span>or use your email for registration</span>
       <input type="text" placeholder="Name" [(ngModel)]="signupName" name="signupName" required>
       <input type="email" placeholder="Email" [(ngModel)]="signupEmail" name="signupEmail" required>
       <input type="password" placeholder="Password" [(ngModel)]="signupPassword" name="signupPassword" required>
       <button type="submit">Sign Up</button>
     </form>
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+      <p class="toggle-text">
+      Already have an account? 
+      <button class="ghost" (click)="toggleView()">Log In</button>
+    </p>
   </div>
 
-  <!-- Sign In Form -->
-  <div class="form-container sign-in-container">
-    <form (ngSubmit)="handleLogin()" novalidate>
-      <h1>Log in</h1>
-      <span> into your account</span>
-      <br>
-      <input type="email" placeholder="Email" [(ngModel)]="loginEmail" name="loginEmail" required>
-      <input type="password" placeholder="Password" [(ngModel)]="loginPassword" name="loginPassword" required>
-      <a href="#">Forgot your password?</a>
-      <button type="submit">Sign In</button>
-      <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-    </form>
-  </div>
-
-  <!-- Overlay Panels -->
-  <div class="overlay-container">
-    <div class="overlay">
-      <div class="overlay-panel overlay-left">
-        <h1>Already have an account ?</h1>
-        <p>To keep connected with us please login with your personal info</p>
-        <button class="ghost" (click)="togglePanel(false)">Log In</button>
-      </div>
-      <div class="overlay-panel overlay-right">
-        <h1>New to Carpet Factory ?</h1>
-        <p>Click on sign up and start your journey with us</p>
-        <button class="ghost" (click)="togglePanel(true)">Sign Up</button>
-      </div>
-    </div>
-  </div>
 </div>

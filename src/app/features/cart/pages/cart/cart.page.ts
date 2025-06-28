@@ -32,36 +32,44 @@ export class CartPage implements OnInit {
     });
   }
 
-  onPlaceOrder(): void {
-    const cartItems = this.cart?.cartItems || []; // fallback to empty array
-    console.log('OnplaceOrder Called, Cart items:', cartItems);
-    if (cartItems.length === 0) {
-      console.error('No cart items found');
-      return; // don't place empty orders
-    }
+  // onPlaceOrder(): void {
+  //   const cartItems = this.cart?.cartItems || []; // fallback to empty array
+  //   console.log('OnplaceOrder Called, Cart items:', cartItems);
+  //   if (cartItems.length === 0) {
+  //     console.error('No cart items found');
+  //     return; // don't place empty orders
+  //   }
   
-    if (!this.cart) {
-      console.error('Cart is null, cannot place order');
-      return;
-    }
-    this.orderService.placeOrder(this.cart, null).subscribe({
-      next: (order) => {
-        console.log('Order placed successfully:', order);
-        this.router.navigate(['/order-success']); // Navigate to success page
-      },
-      error: (err) => {
-        console.error('Failed to place order:', err);
-      }
-    });
-  }
+  //   if (!this.cart) {
+  //     console.error('Cart is null, cannot place order');
+  //     return;
+  //   }
+  //   this.orderService.placeOrder(this.cart, null).subscribe({
+  //     next: (order) => {
+  //       console.log('Order placed successfully:', order);
+  //       this.router.navigate(['/order-success']); // Navigate to success page
+  //     },
+  //     error: (err) => {
+  //       console.error('Failed to place order:', err);
+  //     }
+  //   });
+  // }
 
     addToCart(item: CartItem): void {
       const userId = '10'; 
       console.log('Adding to cart with product Id:', item.productId);
+      
+      const existingItem = this.cart?.cartItems.find(cartItem => cartItem.productId === item.productId.toString());
+
+      // For Faster UI, Update the cart item quantity immediately
+      if (existingItem) {
+        console.log('Item already exists in cart, increasing quantity');
+        existingItem.quantity += 1;
+      }
+
       this.cartService.updateCartItem(userId, item.productId, 1).subscribe({
         next: (res) => {
-          item.quantity = item.quantity + 1; // Update the item quantity in the cart
-          console.log('Item added to cart:', res);
+          console.log('Item added to cart confirmed by backend:', res);
         },
         error: (err) => {
           console.error('Failed to add item to cart:', err);
@@ -72,14 +80,23 @@ export class CartPage implements OnInit {
     decreaseQuantity(item: CartItem): void {
       const userId = '10'; 
       console.log('Decreasing quantity for product with productId:', item.productId);
+
+      const existingItem = this.cart?.cartItems.find(cartItem => cartItem.productId === item.productId.toString());
+
+      // For Faster UI, Update the cart item quantity immediately
+      if (existingItem) {
+        console.log('Item already in cart, decreasing quantity:', existingItem);
+        existingItem.quantity -= 1;
+
+        // Remove item from cart if quantity is 0 or less
+        if (existingItem.quantity <= 0 && this.cart !== null) {
+          this.cart.cartItems = this.cart.cartItems.filter(i => i.productId !== item.productId.toString());
+        }
+      }
+
       this.cartService.updateCartItem(userId, item.productId, -1).subscribe({
         next: (res) => {
-          item.quantity = item.quantity - 1; // Update the item quantity in the cart
           console.log('Quantity decreased:', res);
-          if (item.quantity <= 0 && this.cart) {
-            // Remove item from cartItems array to update UI
-            this.cart.cartItems = this.cart.cartItems.filter(i => i.productId !== item.productId);
-          }
         },
         error: (err) => {
           console.error('Failed to decrease quantity:', err);

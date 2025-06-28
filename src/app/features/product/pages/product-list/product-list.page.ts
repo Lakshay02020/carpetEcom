@@ -51,6 +51,7 @@ export class ProductListPage implements OnInit {
     });
   }
 
+  // TODO : Clicking add button 20 times is too fast for backend, need to add dealy and a scheduled update
   addToCart(product: Product): void {
     if (!this.authService.isLoggedIn()) {
       this.showLoginPopup = true;
@@ -70,11 +71,20 @@ export class ProductListPage implements OnInit {
       description: product.description
     };
 
+    const existingItem = this.cart?.cartItems.find(item => item.productId === product.id.toString());
+
+    // For Faster UI, Update the cart item quantity immediately
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      // If the item does not exist, add it to the cart
+      console.log('Item not in cart, adding new item:', cartItem);
+      this.cart?.cartItems.push(cartItem);
+    }
+
     this.cartService.updateCartItem(userId, product.id.toString(), quantity).subscribe({
       next: (res) => {
-        cartItem.quantity = cartItem.quantity + 1; // Update the item quantity in the cart
-        this.refreshCart();
-        console.log('Item added to cart:', res);
+        console.log('Item added to cart confirmed by backend:', res);
       },
       error: (err) => {
         console.error('Failed to add item to cart:', err);
@@ -96,6 +106,19 @@ export class ProductListPage implements OnInit {
     console.log('Decreasing quantity for:', product);
     const quantity= -1; // Decrease quantity by 1
 
+    const existingItem = this.cart?.cartItems.find(item => item.productId === product.id.toString());
+
+    // For Faster UI, Update the cart item quantity immediately
+    if (existingItem) {
+      console.log('Item already in cart, decreasing quantity:', existingItem);
+      existingItem.quantity -= 1;
+
+      // Remove item from cart if quantity is 0 or less
+      if (existingItem.quantity <= 0 && this.cart !== null) {
+         this.cart.cartItems = this.cart.cartItems.filter(i => i.productId !== product.id.toString());
+      }
+    }
+
     const cartItem: CartItem = {
       id: 0, 
       productId: product.id.toString(),
@@ -105,11 +128,10 @@ export class ProductListPage implements OnInit {
       description: product.description
     };
 
+    console.log("Before cart item updated successfully:", cartItem);
     this.cartService.updateCartItem(userId, cartItem.productId, quantity).subscribe({
       next: (res) => {
-        cartItem.quantity = cartItem.quantity - 1; // Update the item quantity in the cart
-        this.refreshCart();
-        console.log('Quantity decreased:', res);
+        console.log("Quantity decrease. Confirmed by backend")
       },
       error: (err) => {
         console.error('Failed to decrease quantity:', err);

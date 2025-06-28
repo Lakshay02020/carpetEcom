@@ -13,7 +13,7 @@ export class CheckoutService {
    * Step 1: Create Razorpay order via backend
    */
   createOrder(amount: number) {
-    return this.http.post<any>('http://localhost:9089/api/create', {
+    return this.http.post<any>('https://payment-service-41up.onrender.com/api/create', {
       amount: amount * 100, // Razorpay expects paise,
       orderId: 'order_' + new Date().getTime() // Unique order ID
     });
@@ -22,7 +22,7 @@ export class CheckoutService {
   /**
    * Step 2: Open Razorpay and handle payment
    */
-  openRazorpay(order: any, userInfo: { name: string, email: string, contact: string }, onSuccess: () => void, onFailure: () => void) {
+  openRazorpay(order: any, userInfo: { name: string, email: string, contact: string }, onSuccess: (paymentId: string) => void, onFailure: () => void) {
     const options = {
       key: 'rzp_test_KpXMQXub4PbPYO', // Replace with your real Key ID
       amount: order.amount,
@@ -32,10 +32,13 @@ export class CheckoutService {
       order_id: order.id,
       handler: (response: any) => {
         // Call verify after payment
+      const paymentId = response.razorpay_payment_id;
+      console.log('Payment ID:', paymentId);
+
       this.verifyPayment(response).subscribe({
         next: (res) => {
           console.log('Verify success response:', res);
-          onSuccess();
+          onSuccess(paymentId);
         },
         error: (err) => {
           console.error('Verification failed:', err);
@@ -62,6 +65,6 @@ export class CheckoutService {
     razorpay_signature: string
   }) {
     console.log('Verifying payment with data:', paymentData);
-    return this.http.post('http://localhost:9089/api/verify', paymentData);
+    return this.http.post('https://payment-service-41up.onrender.com/api/verify', paymentData);
   }
 }

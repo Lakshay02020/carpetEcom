@@ -8,7 +8,7 @@ import { AuthPage } from './features/auth/auth.page';
 import { AuthGuard } from './guards/auth.guard';  // Ensure you have an AuthGuard implemented
 
 export const appRoutes: Routes = [
-  { path: '', redirectTo: '/product', pathMatch: 'full' },  // Redirect to /product by default
+  { path: '', component: ProductListPage },  // Redirect to /product by default
  
    // Public Routes
   { path: 'login', component: AuthPage },

@@ -16,8 +16,7 @@
     <article *ngFor="let product of products" class="product-card">
       <div class="product-image-container">
         <a [routerLink]="['/product-details', product.id]">
-        <img
-          [src]="getRandomImage()"
+        <img src="assests/images/carpet3.jpg" 
           [alt]="product.name"
           class="product-image"
         />

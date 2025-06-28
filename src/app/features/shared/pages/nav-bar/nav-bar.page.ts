@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth-service/auth.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nav-bar',
@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class NavBarPage {
 showLoginPopup = false;
+isMenuOpen = false;
 
 constructor(private authService: AuthService, private router: Router) {}
 
@@ -25,6 +26,15 @@ handleCartClick(event: Event): void {
     this.showLoginPopup = true;
     console.log('User not logged in, showing login popup');
   }
+}
+
+
+toggleMenu() {
+  this.isMenuOpen = !this.isMenuOpen;
+}
+
+closeMenu() {
+  this.isMenuOpen = false;
 }
 
 closePopup(): void {
