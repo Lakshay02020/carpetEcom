@@ -57,8 +57,7 @@ export class ProductListPage implements OnInit {
       this.showLoginPopup = true;
       return;
     }
-    
-    const userId = '10'; 
+
     console.log('Adding to cart:', product);
     const quantity= 1; // Default quantity to add
 
@@ -82,7 +81,7 @@ export class ProductListPage implements OnInit {
       this.cart?.cartItems.push(cartItem);
     }
 
-    this.cartService.updateCartItem(userId, product.id.toString(), quantity).subscribe({
+    this.cartService.updateCartItem(product.id.toString(), quantity).subscribe({
       next: (res) => {
         console.log('Item added to cart confirmed by backend:', res);
       },
@@ -102,7 +101,6 @@ export class ProductListPage implements OnInit {
   }
 
   decreaseQuantity(product: Product): void {
-    const userId = '10'; 
     console.log('Decreasing quantity for:', product);
     const quantity= -1; // Decrease quantity by 1
 
@@ -129,7 +127,7 @@ export class ProductListPage implements OnInit {
     };
 
     console.log("Before cart item updated successfully:", cartItem);
-    this.cartService.updateCartItem(userId, cartItem.productId, quantity).subscribe({
+    this.cartService.updateCartItem(cartItem.productId, quantity).subscribe({
       next: (res) => {
         console.log("Quantity decrease. Confirmed by backend")
       },

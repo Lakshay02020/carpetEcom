@@ -79,8 +79,6 @@ refreshCart(): void {
       console.log('Login popup state:', this.showLoginPopup);
       return;
     }
-
-    const userId = '10'; 
     console.log('Adding to cart:', product);
     const quantity= 1; // Default quantity to add
 
@@ -104,7 +102,7 @@ refreshCart(): void {
       this.cart?.cartItems.push(cartItem);
     }
 
-    this.cartService.updateCartItem(userId, product.id.toString(), quantity).subscribe({
+    this.cartService.updateCartItem(product.id.toString(), quantity).subscribe({
       next: (res) => {
         cartItem.quantity = cartItem.quantity + 1; // Update the item quantity in the cart
         this.refreshCart();
@@ -126,7 +124,6 @@ refreshCart(): void {
   }
 
   decreaseQuantity(product: Product): void {
-    const userId = '10'; 
     console.log('Decreasing quantity for:', product);
     const quantity= -1; // Decrease quantity by 1
 
@@ -152,7 +149,7 @@ refreshCart(): void {
       }
     }
 
-    this.cartService.updateCartItem(userId, cartItem.productId, quantity).subscribe({
+    this.cartService.updateCartItem(cartItem.productId, quantity).subscribe({
       next: (res) => {
         console.log('Quantity decreased:', res);
       },

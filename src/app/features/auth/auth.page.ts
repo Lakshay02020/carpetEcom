@@ -31,7 +31,9 @@ export class AuthPage {
     this.authService.login({ email: this.loginEmail, password: this.loginPassword })
       .subscribe({
         next: (res) => {
+          console.log('Login successful:', res);
           this.authService.saveToken(res.token);
+          this.authService.saveUserId(res.userId);
           this.router.navigate(['/']);
         },
         error: () => {
@@ -47,7 +49,9 @@ export class AuthPage {
       password: this.signupPassword
     }).subscribe({
       next: (res) => {
+        console.log('Signup successful:', res);
         this.authService.saveToken(res.token);
+        this.authService.saveUserId(res.userId);
         this.router.navigate(['/']);
       },
       error: () => {

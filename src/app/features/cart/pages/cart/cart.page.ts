@@ -56,7 +56,6 @@ export class CartPage implements OnInit {
   // }
 
     addToCart(item: CartItem): void {
-      const userId = '10'; 
       console.log('Adding to cart with product Id:', item.productId);
       
       const existingItem = this.cart?.cartItems.find(cartItem => cartItem.productId === item.productId.toString());
@@ -67,7 +66,7 @@ export class CartPage implements OnInit {
         existingItem.quantity += 1;
       }
 
-      this.cartService.updateCartItem(userId, item.productId, 1).subscribe({
+      this.cartService.updateCartItem(item.productId, 1).subscribe({
         next: (res) => {
           console.log('Item added to cart confirmed by backend:', res);
         },
@@ -78,7 +77,6 @@ export class CartPage implements OnInit {
     }
   
     decreaseQuantity(item: CartItem): void {
-      const userId = '10'; 
       console.log('Decreasing quantity for product with productId:', item.productId);
 
       const existingItem = this.cart?.cartItems.find(cartItem => cartItem.productId === item.productId.toString());
@@ -94,7 +92,7 @@ export class CartPage implements OnInit {
         }
       }
 
-      this.cartService.updateCartItem(userId, item.productId, -1).subscribe({
+      this.cartService.updateCartItem(item.productId, -1).subscribe({
         next: (res) => {
           console.log('Quantity decreased:', res);
         },

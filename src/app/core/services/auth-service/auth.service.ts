@@ -12,26 +12,36 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(credentials: { email: string, password: string }) {
-    return this.http.post<{ token: string }>(`${this.apiUrl}/login`, credentials);
+    return this.http.post<{ token: string, userId: string }>(`${this.apiUrl}/login`, credentials);
   }
 
   signup(data: { name: string, email: string, password: string }) {
-    return this.http.post<{ token: string }>(`${this.apiUrl}/register`, data);
+    return this.http.post<{ token: string, userId: string }>(`${this.apiUrl}/register`, data);
   }
   
   saveToken(token: string) {
     localStorage.setItem('jwtToken', token);
   }
 
+  saveUserId(userId: string) {
+    localStorage.setItem('userId', userId);
+  }
+  
   getToken(): string | null {
     return localStorage.getItem('jwtToken');
   }
 
+  getUserId(): string | null {
+    return localStorage.getItem('userId');
+  }
+  
   logout() {
     localStorage.removeItem('jwtToken');
+    localStorage.removeItem('userId');
   }
 
   isLoggedIn(): boolean {
+    
     return !!this.getToken();
   }
 }
