@@ -6,14 +6,18 @@ import { NavBarPage } from '../app/features/shared/pages/nav-bar/nav-bar.page';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { PromotionStripPage } from './features/shared/pages/promotion-strip/promotion-strip.page';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, NavBarPage, RouterOutlet],
+  imports: [CommonModule, NavBarPage, RouterOutlet, PromotionStripPage],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
 
   showNavbar = true;
 
