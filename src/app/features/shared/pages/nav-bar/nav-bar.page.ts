@@ -11,9 +11,15 @@ import { AuthService } from '../../../../core/services/auth-service/auth.service
 })
 export class NavBarPage {
 showLoginPopup = false;
+showLogoutButton = false;
 isMenuOpen = false;
 
 constructor(private authService: AuthService, private router: Router) {}
+
+ngOnInit() {
+  this.showLogoutButton = this.authService.isLoggedIn();
+  console.log('User logged in:', this.showLogoutButton);
+}
 
 handleCartClick(event: Event): void {
   console.log('Cart icon clicked');

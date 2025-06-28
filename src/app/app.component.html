@@ -1,5 +1,5 @@
 <app-nav-bar *ngIf="showNavbar"></app-nav-bar>
-<app-promo-strip></app-promo-strip>
+<app-promo-strip *ngIf="showNavbar"></app-promo-strip>
 <main>
   <router-outlet></router-outlet>
 </main>
