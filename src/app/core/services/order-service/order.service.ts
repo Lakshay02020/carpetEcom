@@ -10,6 +10,7 @@ import { Cart } from '../../models/cart.model';       // Ensure correct path
 import { CartItem } from '../../models/cartItem.model';
 import { DeliveryDetails } from '../../models/deliveryDetail.model';
 import { PaymentDetails } from '../../models/paymentDetails.mode';
+import { AuthService } from '../auth-service/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +18,7 @@ import { PaymentDetails } from '../../models/paymentDetails.mode';
 export class OrderService {
   private apiUrl = environment.orderApi;
 
-  constructor(private http: HttpClient, private cartService: CartService) {}
+  constructor(private http: HttpClient, private cartService: CartService, private authService: AuthService) {}
 
   /**
    * Clears the user's cart.
@@ -49,8 +50,11 @@ export class OrderService {
 
     //  In a real app, you would get this data from the user's session,
     //  or from input fields in the checkout form.  This is hardcoded for demonstration.
-    const userId = '10';
-    const shippingAddress = 'House no 549, Patiala Chowk, Punjab';
+    const userId = this.authService.getUserId(); // Assuming you have a method to get the current user's ID
+    if (!userId) {
+      throw new Error('User ID is required to place an order');
+    }
+    const shippingAddress = 'constant';
     const paymentMode = 'COD';
 
     console.log("Order built!")
@@ -63,6 +67,19 @@ export class OrderService {
     };
   }
 
+  getOrdersByUserId(userId: string): Observable<Order[]> {
+    console.log('Fetching orders for userId:', userId); 
+    if (!userId) {
+      return throwError(() => new Error('User ID is required to fetch orders'));
+    }
+    return this.http.get<Order[]>(`${this.apiUrl}/user/${userId}`).pipe(
+      tap((orders) => console.log('Fetched orders:', orders)),
+      catchError((err) => {
+        console.error('Error fetching orders:', err);
+        return throwError(() => new Error('Failed to fetch orders'));
+      })
+    );
+  }
   /**
    * Places an order using the provided cart.  Clears the cart upon successful order placement.
    * @param cart The user's cart.

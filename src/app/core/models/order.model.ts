@@ -6,7 +6,7 @@ export interface Order {
   totalAmount: number;
   shippingAddress: string;
   paymentMode: string;
-  status?: 'PENDING' | 'COMPLETED' | 'CANCELLED'; // Match your OrderStatus enum
+  status: string; // Match your OrderStatus enum
   items: OrderItem[];
   createdAt?: string; // ISO String
   updatedAt?: string; // ISO String

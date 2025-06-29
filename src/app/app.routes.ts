@@ -6,6 +6,7 @@ import { CartPage } from './features/cart/pages/cart/cart.page';
 import { OrderCheckoutPage } from './features/order/pages/order-checkout/order-checkout.page';
 import { AuthPage } from './features/auth/auth.page';
 import { AuthGuard } from './guards/auth.guard';  // Ensure you have an AuthGuard implemented
+import { MyOrdersComponent } from './features/order/pages/my-orders/my-order.page';
 
 export const appRoutes: Routes = [
   { path: '', component: ProductListPage },  // Redirect to /product by default
@@ -18,6 +19,6 @@ export const appRoutes: Routes = [
   { path: 'product-details/:id', component: ProductDetailsPage },  // Product Details Page route
   { path: 'cart/:userId', component: CartPage, canActivate: [AuthGuard]},
   { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
-  { path: 'checkout', component: OrderCheckoutPage, canActivate: [AuthGuard]}, // Assuming you have a checkout order page 
-
+  { path: 'checkout', component: OrderCheckoutPage, canActivate: [AuthGuard]}, // Assuming you have a checkout order page
+  { path: 'my-orders', component: MyOrdersComponent, canActivate: [AuthGuard] }
 ];

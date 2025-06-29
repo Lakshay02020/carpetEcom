@@ -1,0 +1,33 @@
+<div class="orders-page">
+  <h2 class="orders-title">My Orders</h2>
+
+  <div *ngIf="orders && orders.length > 0; else noOrders" class="orders-list">
+    <div class="order-card" *ngFor="let order of orders">
+      <div class="order-header">
+        <div class="order-id">Order #{{ order.id }}</div>
+        <div class="order-status" [ngClass]="order.status.toLowerCase()">{{ order.status }}</div>
+      </div>
+
+      <div class="order-details">
+        <div class="detail">
+          <strong>Date:</strong> {{ order.createdAt | date:'mediumDate' }}
+        </div>
+        <div class="detail">
+          <strong>Total:</strong> ₹{{ order.totalAmount }}
+        </div>
+        <div class="detail">
+          <strong>Items:</strong> {{ order.items.length }}
+        </div>
+      </div>
+
+      <div class="order-actions">
+        <button class="btn btn-details" (click)="viewOrder(order)">View Details</button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noOrders>
+    <p class="empty-message">You haven't placed any orders yet. 🎉</p>
+    <a routerLink="/" class="continue-shopping">Start Shopping</a>
+  </ng-template>
+</div>
