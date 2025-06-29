@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { PromotionStripPage } from './features/shared/pages/promotion-strip/promotion-strip.page';
+import { FooterComponent } from './features/shared/pages/footer/footer.page';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, NavBarPage, RouterOutlet, PromotionStripPage],
+  imports: [CommonModule, NavBarPage, RouterOutlet, PromotionStripPage, FooterComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {

@@ -28,6 +28,7 @@ export class AuthPage {
   constructor(private authService: AuthService, private router: Router) {}
 
   handleLogin() {
+    console.log('Login attempt with email:', this.loginEmail);
     this.authService.login({ email: this.loginEmail, password: this.loginPassword })
       .subscribe({
         next: (res) => {
@@ -43,6 +44,7 @@ export class AuthPage {
   }
 
   handleSignup() {
+    console.log('Signup attempt with email:', this.signupEmail);
     this.authService.signup({
       name: this.signupName,
       email: this.signupEmail,
