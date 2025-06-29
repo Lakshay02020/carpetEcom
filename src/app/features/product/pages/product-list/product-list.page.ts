@@ -7,21 +7,24 @@ import { Product } from '../../../../core/models/product.model';
 import { Router, RouterModule}  from '@angular/router';
 import { CartItem } from '../../../../core/models/cartItem.model';
 import { Cart } from '../../../../core/models/cart.model';
-import { getRandomPlaceholderImage } from '../../../imageUtils';
+
 import { AuthService } from '../../../../core/services/auth-service/auth.service';
+import { PRODUCT_COLORS } from '../../../../core/constants/colors.constant';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   imports: [CommonModule, RouterModule], // ✅ INCLUDE IT HERE
   templateUrl: './product-list.page.html',
-  styleUrls: ['./product-list.page.css', './product-list-customised-list.page.css'],
+  styleUrls: ['./product-list.page.css', './product-list-customised-list.page.css', './color.page.css'],
 })
 
 export class ProductListPage implements OnInit {
   products: Product[] = [];
   cart: Cart | null = null;
   showLoginPopup = false;
+  productColors = PRODUCT_COLORS;
+
   constructor(private productService: ProductService, private cartService: CartService, private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
@@ -165,14 +168,7 @@ scrollToProducts(element: HTMLElement): void {
   element.scrollIntoView({ behavior: 'smooth' });
 }
 
-placeholderImages = [
-  'assests/images/carpet1.jpg',
-  'assests/images/carpet2.jpg',
-  'assests/images/carpet3.jpg',
-  'assests/images/carpet4.png'
-];
-
-getRandomImage(): string {
-  return getRandomPlaceholderImage();
-}
+  filterByColor(color: string): void {
+    console.log("Filter CColor method");
+  }
 }
