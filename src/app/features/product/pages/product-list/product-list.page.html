@@ -77,6 +77,84 @@
       </div>
     </article>
   </div>
+
+
+    <section class="customization-section">
+      <div class="customization-text">
+        <h2>Personalized Perfection</h2>
+        <h3>Bespoke Customization</h3>
+        <p>
+          At Carpet Factory, we believe every space deserves a foundation that reflects its essence. 
+          Our bespoke carpet customization service brings your vision to life with tailored designs and premium quality.
+        </p>
+        <button class="custom-btn">Contact Us</button>
+      </div>
+
+      <div class="customization-images">
+        <img src="assests/images/customised-image-2.jpg" alt="Customized Carpet 2" class="custom-image" />
+        <img src="assests/images/customised-image-3.jpg" alt="Customized Carpet 1" class="custom-image" />
+      </div>
+    </section>
+
+  <h2 class="section-title">Shop by colour and design</h2>
+  <div class="grid-container" #productsSection>
+    <article *ngFor="let product of products" class="product-card">
+      <div class="product-image-container">
+        <a [routerLink]="['/product-details', product.id]">
+        <img src="assests/images/carpet3.jpg" 
+          [alt]="product.name"
+          class="product-image"
+        />
+        </a>
+      </div>
+
+      <div class="product-details">
+        <header class="product-header">
+          <span class="product-brand">{{ product.brand }}</span>
+          <span class="product-meta">
+            {{ product.category }} | {{ product.size }} | {{ product.color }}
+          </span>
+          <h3 class="product-name">{{ product.name }}</h3>
+        </header>
+
+        <div class="product-pricing">
+          <p class="product-price">₹{{ product.price }}</p>
+        </div>
+
+        <div class="product-summary">
+          <p class="product-description">
+            {{ product.description || 'Premium quality carpet for your comfort.' }}
+          </p>
+        </div>
+
+        <footer class="product-actions">
+          <!-- Check if item is in cart -->
+          <ng-container *ngIf="isInCart(product.id); else addToCartBtn">
+            <div class="quantity-input styled-quantity">
+              <button (click)="decreaseQuantity(product)" class="qty-btn">−</button>
+              <span class="qty-label">{{ getCartItemQuantity(product.id) }}</span>
+              <button (click)="addToCart(product)" class="qty-btn">+</button>
+            </div>
+          </ng-container>
+        
+          <!-- Fallback "Add to Cart" Button -->
+          <ng-template #addToCartBtn>
+            <button (click)="addToCart(product)" class="btn btn-cart">
+              🛒 Add to Cart
+            </button>
+          </ng-template>
+        
+          <button
+            [routerLink]="['/product-details', product.id]"
+            class="btn btn-details"
+          >
+            🔍 View Details
+          </button>
+        </footer>
+        
+      </div>
+    </article>
+  </div>
 </section>
 
 <!-- Login Popup -->

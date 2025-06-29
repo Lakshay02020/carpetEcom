@@ -15,7 +15,7 @@ import { AuthService } from '../../../../core/services/auth-service/auth.service
   standalone: true,
   imports: [CommonModule, RouterModule], // ✅ INCLUDE IT HERE
   templateUrl: './product-list.page.html',
-  styleUrls: ['./product-list.page.css'],
+  styleUrls: ['./product-list.page.css', './product-list-customised-list.page.css'],
 })
 
 export class ProductListPage implements OnInit {
